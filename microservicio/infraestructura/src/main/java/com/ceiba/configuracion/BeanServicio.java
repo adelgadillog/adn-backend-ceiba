@@ -1,9 +1,11 @@
 package com.ceiba.configuracion;
 
-import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
-import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
-import com.ceiba.usuario.servicio.ServicioCrearUsuario;
-import com.ceiba.usuario.servicio.ServicioEliminarUsuario;
+import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
+import com.ceiba.pedido.servicio.ServicioActualizarPedido;
+import com.ceiba.pedido.servicio.ServicioCrearPedido;
+import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
+import com.ceiba.producto.servicio.ServicioCrearProducto;
+import com.ceiba.pedido.servicio.ServicioEliminarPedido;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,18 +13,23 @@ import org.springframework.context.annotation.Configuration;
 public class BeanServicio {
 
     @Bean
-    public ServicioCrearUsuario servicioCrearUsuario(RepositorioUsuario repositorioUsuario) {
-        return new ServicioCrearUsuario(repositorioUsuario);
+    public ServicioCrearProducto servicioCrearProducto(RepositorioProducto repositorioProducto) {
+        return new ServicioCrearProducto(repositorioProducto);
     }
 
     @Bean
-    public ServicioEliminarUsuario servicioEliminarUsuario(RepositorioUsuario repositorioUsuario) {
-        return new ServicioEliminarUsuario(repositorioUsuario);
+    public ServicioCrearPedido servicioCrearPedido(RepositorioPedido repositorioPedido) {
+        return new ServicioCrearPedido(repositorioPedido);
     }
 
     @Bean
-    public ServicioActualizarUsuario servicioActualizarUsuario(RepositorioUsuario repositorioUsuario) {
-        return new ServicioActualizarUsuario(repositorioUsuario);
+    public ServicioEliminarPedido servicioEliminarPedido(RepositorioPedido repositorioPedido) {
+        return new ServicioEliminarPedido(repositorioPedido);
+    }
+
+    @Bean
+    public ServicioActualizarPedido servicioActualizarPedido(RepositorioPedido repositorioPedido) {
+        return new ServicioActualizarPedido(repositorioPedido);
     }
 	
 

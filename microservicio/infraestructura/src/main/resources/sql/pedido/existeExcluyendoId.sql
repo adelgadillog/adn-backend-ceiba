@@ -1,0 +1,1 @@
+select count(1) from pedido where id <> :id and referencia = :referencia

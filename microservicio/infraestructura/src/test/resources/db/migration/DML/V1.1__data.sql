@@ -1,1 +1,1 @@
-insert into usuario(nombre,clave,fecha_creacion) values('test','1234',now())
+insert into pedido(referencia,estado,usuario_id,fecha_creacion) values('00001',1,17,now())
