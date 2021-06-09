@@ -4,22 +4,22 @@ import com.ceiba.manejador.ManejadorComando;
 import com.ceiba.pedido.comando.ComandoPedido;
 import com.ceiba.pedido.comando.fabrica.FabricaPedido;
 import com.ceiba.pedido.modelo.entidad.Pedido;
-import com.ceiba.pedido.servicio.ServicioActualizarPedido;
+import com.ceiba.pedido.servicio.ServicioAprobarPedido;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ManejadorActualizarProducto implements ManejadorComando<ComandoPedido> {
 
     private final FabricaPedido fabricaPedido;
-    private final ServicioActualizarPedido servicioActualizarPedido;
+    private final ServicioAprobarPedido servicioAprobarPedido;
 
-    public ManejadorActualizarProducto(FabricaPedido fabricaPedido, ServicioActualizarPedido servicioActualizarPedido) {
+    public ManejadorActualizarProducto(FabricaPedido fabricaPedido, ServicioAprobarPedido servicioAprobarPedido) {
         this.fabricaPedido = fabricaPedido;
-        this.servicioActualizarPedido = servicioActualizarPedido;
+        this.servicioAprobarPedido = servicioAprobarPedido;
     }
 
     public void ejecutar(ComandoPedido comandoPedido) {
         Pedido pedido = this.fabricaPedido.crear(comandoPedido);
-        this.servicioActualizarPedido.ejecutar(pedido);
+        this.servicioAprobarPedido.ejecutar(pedido);
     }
 }

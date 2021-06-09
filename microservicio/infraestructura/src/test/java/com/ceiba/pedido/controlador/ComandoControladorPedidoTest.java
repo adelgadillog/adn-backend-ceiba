@@ -32,7 +32,7 @@ public class ComandoControladorPedidoTest {
 
 
     @Test
-    public void actualizar() throws Exception{
+    public void aprobar() throws Exception{
         // arrange
         String referencia= "00001";
         ComandoPedido pedido = new ComandoPedidoTestDataBuilder().build();

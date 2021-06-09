@@ -16,4 +16,10 @@ public class Producto {
         this.cantidadDisponible = cantidadDisponible;
         this.precio = precio;
     }
+
+    public Producto(Long id,String nombre, Long cantidadDisponible, Double precio) {
+        this.nombre = nombre;
+        this.cantidadDisponible = cantidadDisponible;
+        this.precio = precio;
+    }
 }

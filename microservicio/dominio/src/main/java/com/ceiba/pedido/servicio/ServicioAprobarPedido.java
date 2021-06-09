@@ -5,22 +5,18 @@ import com.ceiba.pedido.modelo.entidad.Pedido;
 import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
 import com.ceiba.pedido_producto.modelo.dto.DtoPedidoProducto;
 import com.ceiba.pedido_producto.puerto.dao.DaoPedidoProducto;
-import com.ceiba.producto.modelo.dto.DtoProducto;
-import com.ceiba.producto.modelo.entidad.Producto;
-import com.ceiba.producto.puerto.dao.DaoProducto;
-import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class ServicioActualizarPedido {
+public class ServicioAprobarPedido {
 
-    private static final String REFERENCIA_NO_EXISTE_EN_EL_SISTEMA = "Para la referencia no existe  pedido registrado en el sistema";
+    private static final String REFERENCIA_NO_EXISTE_EN_EL_SISTEMA = "Para la referencia no existe pedido registrado en el sistema";
 
     private final RepositorioPedido repositorioPedido;
     private final DaoPedidoProducto daoPedidoProducto;
-    public ServicioActualizarPedido(RepositorioPedido repositorioPedido,DaoPedidoProducto daoPedidoProducto) {
+    public ServicioAprobarPedido(RepositorioPedido repositorioPedido, DaoPedidoProducto daoPedidoProducto) {
         this.repositorioPedido = repositorioPedido;
         this.daoPedidoProducto = daoPedidoProducto;
     }
@@ -28,11 +24,11 @@ public class ServicioActualizarPedido {
     public void ejecutar(Pedido pedido) {
         validarExistencia(pedido);
         List<DtoPedidoProducto> listaProducto = daoPedidoProducto.listar(pedido.getReferencia());
-        pedido.setTotal(calcularTotal(listaProducto,pedido.getFecha_creacion()));
+        pedido.setTotal(calcularTotal(listaProducto,pedido.getFecha_creacion().getDayOfMonth()));
         pedido.setFecha_aprobacion(LocalDateTime.now());
-        pedido.setFecha_entrega(calcularFechaEntrega(pedido.getFecha_creacion(),15));
+        pedido.setFecha_entrega(calcularFechaEntrega(pedido.getFecha_creacion()));
 
-        this.repositorioPedido.actualizar(pedido);
+        this.repositorioPedido.aprobar(pedido);
     }
 
     private void validarExistencia(Pedido pedido) {
@@ -42,18 +38,18 @@ public class ServicioActualizarPedido {
         }
     }
 
-    private Double calcularTotal(List<DtoPedidoProducto> listaProducto, LocalDateTime fechaCreacion){
-        Double total = listaProducto.stream().mapToDouble(p -> p.getPrecio()).sum();
-        if(fechaCreacion.getDayOfMonth() <= 3) total = total * 0.5;
-        if(fechaCreacion.getDayOfMonth() == 15) total = total * 0.7;
+    private Double calcularTotal(List<DtoPedidoProducto> listaProducto, int fechaCreacion){
+        double total = listaProducto.stream().mapToDouble(DtoPedidoProducto::getPrecio).sum();
+        if(fechaCreacion <= 3) total = total * 0.5;
+        if(fechaCreacion == 15) total = total * 0.7;
 
         return total;
     }
 
-    private LocalDateTime calcularFechaEntrega(LocalDateTime date, int days) {
+    private LocalDateTime calcularFechaEntrega(LocalDateTime date) {
         LocalDateTime result = date;
         int addedDays = 0;
-        while (addedDays < days) {
+        while (addedDays < 15) {
             result = result.plusDays(1);
             if (!(result.getDayOfWeek() == DayOfWeek.SATURDAY || result.getDayOfWeek() == DayOfWeek.SUNDAY)) {
                 ++addedDays;

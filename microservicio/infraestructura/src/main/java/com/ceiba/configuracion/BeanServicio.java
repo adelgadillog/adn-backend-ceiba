@@ -1,9 +1,8 @@
 package com.ceiba.configuracion;
 
 import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
-import com.ceiba.pedido.servicio.ServicioActualizarPedido;
+import com.ceiba.pedido.servicio.ServicioAprobarPedido;
 import com.ceiba.pedido_producto.puerto.dao.DaoPedidoProducto;
-import com.ceiba.producto.puerto.dao.DaoProducto;
 import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
 import com.ceiba.producto.servicio.ServicioCrearProducto;
 import com.ceiba.pedido.servicio.ServicioEliminarPedido;
@@ -26,8 +25,8 @@ public class BeanServicio {
     }
 
     @Bean
-    public ServicioActualizarPedido servicioActualizarPedido(RepositorioPedido repositorioPedido, DaoPedidoProducto daoPedidoProducto) {
-        return new ServicioActualizarPedido(repositorioPedido,daoPedidoProducto);
+    public ServicioAprobarPedido servicioActualizarPedido(RepositorioPedido repositorioPedido, DaoPedidoProducto daoPedidoProducto) {
+        return new ServicioAprobarPedido(repositorioPedido,daoPedidoProducto);
     }
 	
 

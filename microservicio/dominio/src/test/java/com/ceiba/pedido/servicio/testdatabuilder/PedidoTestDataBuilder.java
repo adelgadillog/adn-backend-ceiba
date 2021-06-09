@@ -16,7 +16,7 @@ public class PedidoTestDataBuilder {
     private LocalDateTime fecha_entrega;
 
     public PedidoTestDataBuilder() {
-        referencia = "001102";
+        referencia = "00001";
         estado = 1L;
         usuario_id = 17L;
         total = 1000d;
@@ -32,5 +32,10 @@ public class PedidoTestDataBuilder {
 
     public Pedido build() {
         return new Pedido( id, referencia,  estado,  usuario_id, total, fecha_creacion, fecha_aprobacion, fecha_entrega);
+    }
+
+    public PedidoTestDataBuilder conFechaCreacion(LocalDateTime fecha_creacion) {
+        this.fecha_creacion = fecha_creacion;
+        return this;
     }
 }

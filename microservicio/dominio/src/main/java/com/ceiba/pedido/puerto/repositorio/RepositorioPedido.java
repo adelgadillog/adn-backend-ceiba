@@ -8,7 +8,7 @@ public interface RepositorioPedido {
      * Permite actualizar un pedido
      * @param pedido
      */
-    void actualizar(Pedido pedido);
+    void aprobar(Pedido pedido);
 
     /**
      * Permite eliminar un pedido

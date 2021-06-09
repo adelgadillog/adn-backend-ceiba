@@ -43,7 +43,7 @@ public class RepositorioPedidoMysql implements RepositorioPedido {
     }
 
     @Override
-    public void actualizar(Pedido pedido) {
+    public void aprobar(Pedido pedido) {
         this.customNamedParameterJdbcTemplate.actualizar(pedido, sqlActualizar);
     }
 
