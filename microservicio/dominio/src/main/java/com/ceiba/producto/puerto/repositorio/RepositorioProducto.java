@@ -2,6 +2,8 @@ package com.ceiba.producto.puerto.repositorio;
 
 import com.ceiba.producto.modelo.entidad.Producto;
 
+import java.util.List;
+
 public interface RepositorioProducto {
     /**
      * Permite crear un producto
@@ -10,13 +12,7 @@ public interface RepositorioProducto {
      */
     Long crear(Producto producto);
 
-    /**
-     * Permite actualizar un producto
-     * @param producto
-     */
-    void actualizar(Producto producto);
 
-   
 
     /**
      * Permite validar si existe un producto con un id
@@ -24,6 +20,8 @@ public interface RepositorioProducto {
      * @return si existe o no
      */
     boolean existe(Long id);
+
+
 
 
 

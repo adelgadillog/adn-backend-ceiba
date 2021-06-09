@@ -16,7 +16,7 @@ public class PedidoTestDataBuilder {
     private LocalDateTime fecha_entrega;
 
     public PedidoTestDataBuilder() {
-        referencia = "00001";
+        referencia = "001102";
         estado = 1L;
         usuario_id = 17L;
         total = 1000d;

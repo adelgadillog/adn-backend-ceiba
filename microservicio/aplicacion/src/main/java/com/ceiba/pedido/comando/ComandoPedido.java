@@ -1,7 +1,9 @@
 package com.ceiba.pedido.comando;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import com.ceiba.producto.modelo.entidad.Producto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

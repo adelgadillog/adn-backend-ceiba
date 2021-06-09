@@ -2,13 +2,13 @@ package com.ceiba.pedido.modelo.entidad;
 
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-import static com.ceiba.dominio.ValidadorArgumento.validarLongitud;
-import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
 @Getter
+@Setter
 public class Pedido {
 
     private static final String SE_DEBE_INGRESAR_LA_FECHA_CREACION = "Se debe ingresar la fecha de creación";

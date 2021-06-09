@@ -13,12 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ComandoProducto {
 
-    private Long id;
-    private String referencia;
-    private Long estado;
-    private Long usuario_id;
-    private Double total;
-    private LocalDateTime fecha_creacion;
-    private LocalDateTime fecha_aprobacion;
-    private LocalDateTime fecha_entrega;
+    private String nombre;
+    private Long cantidadDisponible;
+    private Double precio;
 }

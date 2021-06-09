@@ -1,8 +1,11 @@
 package com.ceiba.pedido.servicio.testdatabuilder;
 
 import com.ceiba.pedido.comando.ComandoPedido;
+import com.ceiba.producto.modelo.entidad.Producto;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ComandoPedidoTestDataBuilder {
 
@@ -20,8 +23,8 @@ public class ComandoPedidoTestDataBuilder {
         estado = 2L;
         usuario_id = 17L;
         total = 1000D;
-        fecha_aprobacion = LocalDateTime.now();
-        fecha_entrega = LocalDateTime.now();
+        fecha_creacion  = LocalDateTime.now();
+
     }
 
 

@@ -2,13 +2,13 @@ package com.ceiba;
 
 public class ComandoRespuesta<T> {
 
-    private T valor;
+    private T id;
 
-    public ComandoRespuesta(T valor) {
-        this.valor = valor;
+    public ComandoRespuesta(T id) {
+        this.id = id;
     }
 
-    public T getValor() {
-        return valor;
+    public T getId() {
+        return id;
     }
 }

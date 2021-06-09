@@ -7,27 +7,19 @@ import java.time.LocalDateTime;
 
 public class ComandoProductoTestDataBuilder {
 
-    private Long id;
-    private String referencia;
-    private Long estado;
-    private Long usuario_id;
-    private Double total;
-    private LocalDateTime fecha_creacion;
-    private LocalDateTime fecha_aprobacion;
-    private LocalDateTime fecha_entrega;
+    private String nombre;
+    private Long cantidadDisponible;
+    private Double precio;
 
     public ComandoProductoTestDataBuilder() {
-        referencia = "00001";
-        estado = 2L;
-        usuario_id = 17L;
-        total = 1000D;
-        fecha_aprobacion = LocalDateTime.now();
-        fecha_entrega = LocalDateTime.now();
+        nombre = "Audifonos";
+        cantidadDisponible = 3L;
+        precio = 1000000D;
     }
 
    
 
     public ComandoProducto build() {
-        return new ComandoProducto( id, referencia,  estado,  usuario_id, total, fecha_creacion, fecha_aprobacion, fecha_entrega);
+        return new ComandoProducto(nombre, cantidadDisponible, precio);
     }
 }
