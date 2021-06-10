@@ -40,8 +40,7 @@ public class ServicioAprobarPedidoTest {
         Mockito.when(repositorioPedido.existe(Mockito.anyString())).thenReturn(true);
 
         // act - assert
-        BasePrueba.assertExecute(() -> servicioAprobarPedido.ejecutar(pedido), ExcepcionDuplicidad.class,
-                "Para la referencia no existe  pedido registrado en el sistema");
+        BasePrueba.assertExecute(() -> servicioAprobarPedido.ejecutar(pedido));
 
     }
 
@@ -63,7 +62,7 @@ public class ServicioAprobarPedidoTest {
         this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido,daoPedidoProducto,daoProducto);
 
         // act - assert
-        BasePrueba.assertExecute(() -> servicioAprobarPedido.ejecutar(pedido), ExcepcionDuplicidad.class,"Para la referencia no existe pedido registrado en el sistema");
+        BasePrueba.assertExecute(() -> servicioAprobarPedido.ejecutar(pedido));
 
     }
 
@@ -76,7 +75,7 @@ public class ServicioAprobarPedidoTest {
         this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido,daoPedidoProducto,daoProducto);
 
         // act - assert
-        BasePrueba.assertExecute(() -> servicioAprobarPedido.ejecutar(pedido), ExcepcionDuplicidad.class,"Para la referencia no existe  pedido registrado en el sistema");
+        BasePrueba.assertExecute(() -> servicioAprobarPedido.ejecutar(pedido));
     }
 
     @Test
@@ -88,7 +87,7 @@ public class ServicioAprobarPedidoTest {
         this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido,daoPedidoProducto,daoProducto);
 
         // act - assert
-        BasePrueba.assertExecute(() -> servicioAprobarPedido.ejecutar(pedido), ExcepcionDuplicidad.class,"Para la referencia no existe  pedido registrado en el sistema");
+        BasePrueba.assertExecute(() -> servicioAprobarPedido.ejecutar(pedido));
     }
 
     @Test
@@ -102,5 +101,13 @@ public class ServicioAprobarPedidoTest {
         BasePrueba.assertThrows(() -> servicioAprobarPedido.ejecutar(pedido), ExcepcionDuplicidad.class,"El producto no cuenta con unidades disponibles");
     }
 
-
+    @Test
+    public void ejecutarAprobarProductoDuplicadoEnPedido(){
+        // arrange
+        Mockito.when(repositorioPedido.existe(Mockito.anyString())).thenReturn(true);
+        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido,daoPedidoProducto,daoProducto);
+        Mockito.when(daoPedidoProducto.listar(Mockito.anyString())).thenReturn(new PedidoTestDataBuilder().listarPedidoProductoRepedito());
+        // act - assert
+        BasePrueba.assertExecute(() -> servicioAprobarPedido.ejecutar(pedido));
+    }
 }

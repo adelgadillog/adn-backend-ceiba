@@ -33,15 +33,8 @@ public class BasePrueba {
         }
     }
 
-    public static void assertExecute(Thunk thunk, Class<? extends Exception> exception, String message){
-        try {
-            thunk.execute();
-
-        } catch (Exception e) {
-            Assert.assertTrue(SE_ESPERABA_LA_EXCEPCION + exception.getCanonicalName() + PERO_FUE_LANZADA
-                    + e.getClass().getCanonicalName(), exception.isInstance(e));
-            Assert.assertTrue(e.getMessage().contains(message));
-        }
+    public static void assertExecute(Thunk thunk){
+        thunk.execute();
     }
 
     @FunctionalInterface

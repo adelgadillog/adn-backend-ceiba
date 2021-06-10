@@ -31,8 +31,7 @@ public class ServicioEliminarPedidoTest {
     public void ejecutarEliminar(){
         // act - assert
         Mockito.when(repositorioPedido.existe(Mockito.anyString())).thenReturn(true);
-        BasePrueba.assertExecute(() -> servicioEliminarPedido.ejecutar(pedido.getReferencia()), ExcepcionDuplicidad.class,
-                "Para la referencia no existe pedido registrado en el sistema");
+        BasePrueba.assertExecute(() -> servicioEliminarPedido.ejecutar(pedido.getReferencia()));
     }
 
     @Test

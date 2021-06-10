@@ -57,5 +57,13 @@ public class PedidoTestDataBuilder {
         return lista;
     }
 
+    public List<DtoPedidoProducto> listarPedidoProductoRepedito(){
+        List<DtoPedidoProducto> lista = new ArrayList<>();
+        lista.add(new DtoPedidoProducto("00001","Auriculares",1L,100000D,1L));
+        lista.add(new DtoPedidoProducto("00001","Celular",1L,9000000D,2L));
+        lista.add(new DtoPedidoProducto("00001","Celular",1L,9000000D,1L));
+        return lista;
+    }
+
 
 }
