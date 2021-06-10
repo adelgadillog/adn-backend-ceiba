@@ -21,5 +21,6 @@ public class Producto {
         this.nombre = nombre;
         this.cantidadDisponible = cantidadDisponible;
         this.precio = precio;
+        this.id = id;
     }
 }

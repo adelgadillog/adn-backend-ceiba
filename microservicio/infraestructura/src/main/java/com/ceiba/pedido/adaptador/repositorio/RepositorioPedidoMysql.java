@@ -22,11 +22,9 @@ public class RepositorioPedidoMysql implements RepositorioPedido {
     @SqlStatement(namespace="pedido", value="existe")
     private static String sqlExiste;
 
-
     public RepositorioPedidoMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
-
 
     @Override
     public void eliminar(String referencia) {

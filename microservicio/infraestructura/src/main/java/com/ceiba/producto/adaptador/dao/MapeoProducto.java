@@ -1,13 +1,11 @@
 package com.ceiba.producto.adaptador.dao;
 
 import com.ceiba.infraestructura.jdbc.MapperResult;
-import com.ceiba.pedido.modelo.dto.DtoPedido;
 import com.ceiba.producto.modelo.dto.DtoProducto;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 
 public class MapeoProducto implements RowMapper<DtoProducto>, MapperResult {
 

@@ -2,8 +2,6 @@ package com.ceiba.producto.comando.manejador;
 
 import com.ceiba.ComandoRespuesta;
 import com.ceiba.manejador.ManejadorComandoRespuesta;
-import com.ceiba.pedido.comando.ComandoPedido;
-import com.ceiba.pedido.modelo.entidad.Pedido;
 import com.ceiba.producto.comando.ComandoProducto;
 import com.ceiba.producto.comando.fabrica.FabricaProducto;
 import com.ceiba.producto.modelo.entidad.Producto;

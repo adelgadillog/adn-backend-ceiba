@@ -4,7 +4,6 @@ import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import com.ceiba.pedido_producto.modelo.dto.DtoPedidoProducto;
 import com.ceiba.pedido_producto.puerto.dao.DaoPedidoProducto;
-import com.ceiba.producto.puerto.dao.DaoProducto;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
 

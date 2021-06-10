@@ -1,11 +1,8 @@
 package com.ceiba.producto.servicio;
 
-import com.ceiba.pedido.modelo.entidad.Pedido;
-import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.producto.modelo.entidad.Producto;
 import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
-
 
 public class ServicioCrearProducto {
 

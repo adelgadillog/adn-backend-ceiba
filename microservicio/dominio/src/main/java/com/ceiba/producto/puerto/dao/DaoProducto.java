@@ -7,8 +7,8 @@ import java.util.List;
 public interface DaoProducto {
 
     /**
-     * Permite listar pedidos
-     * @return los pedidos
+     * Permite listar productos
+     * @return los productos
      */
     List<DtoProducto> listar();
 }

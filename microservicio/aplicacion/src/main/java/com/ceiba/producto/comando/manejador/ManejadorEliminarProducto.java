@@ -4,7 +4,6 @@ import com.ceiba.manejador.ManejadorComando;
 import com.ceiba.pedido.servicio.ServicioEliminarPedido;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class ManejadorEliminarProducto implements ManejadorComando<String> {
 
