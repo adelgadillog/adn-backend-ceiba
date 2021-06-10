@@ -2,6 +2,7 @@ package com.ceiba.pedido.servicio.testdatabuilder;
 
 import com.ceiba.pedido.modelo.entidad.Pedido;
 import com.ceiba.pedido_producto.modelo.dto.DtoPedidoProducto;
+import com.ceiba.producto.modelo.dto.DtoProducto;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -42,10 +43,17 @@ public class PedidoTestDataBuilder {
         return this;
     }
 
-    public List<DtoPedidoProducto> listar(){
+    public List<DtoPedidoProducto> listarPedidoProducto(){
         List<DtoPedidoProducto> lista = new ArrayList<>();
         lista.add(new DtoPedidoProducto("00001","Auriculares",2L,100000D,1L));
         lista.add(new DtoPedidoProducto("00001","Celular",1L,9000000D,2L));
+        return lista;
+    }
+
+    public List<DtoProducto> listarProducto(){
+        List<DtoProducto> lista = new ArrayList<>();
+        lista.add(new DtoProducto(1L,"Auriculares",1L,100000D));
+        lista.add(new DtoProducto(1L,"Celular",2L,9000000D));
         return lista;
     }
 }
