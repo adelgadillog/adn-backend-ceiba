@@ -10,7 +10,7 @@ pipeline {
  	disableConcurrentBuilds()
   }
 	environment {
-        PROJECT_PATH_BACK = './'
+        PROJECT_PATH_BACK = './microservicio/'
 	}
   
   tools {
