@@ -40,7 +40,19 @@ pipeline {
     
     
 
-
+	stage('Test Unitarios -Cobertura'){
+		parallel {
+			stage('Test- Cobertura backend'){
+				steps {
+						echo '------------>test backend<------------'
+						dir("${PROJECT_PATH_BACK}"){
+						sh 'gradle --stacktrace test'
+							
+					}
+				}
+			}
+		}
+	}
     
 
     stage('Build') {
