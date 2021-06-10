@@ -54,7 +54,6 @@ public class ServicioAprobarPedido {
         } else if(fechaCreacion == 15){
             total = total * 0.7;
         }
-
         return total;
     }
 
