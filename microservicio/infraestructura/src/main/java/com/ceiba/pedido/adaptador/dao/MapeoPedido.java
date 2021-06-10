@@ -15,13 +15,13 @@ public class MapeoPedido implements RowMapper<DtoPedido>, MapperResult {
         Long id = resultSet.getLong("id");
         String referencia = resultSet.getString("referencia");
         Long estado = resultSet.getLong("estado");
-        Long usuario_id = resultSet.getLong("usuario_id");
+        Long usuarioId = resultSet.getLong("usuario_id");
         Double total = resultSet.getDouble("total");
-        LocalDateTime fecha_creacion = extraerLocalDateTime(resultSet, "fecha_creacion");
-        LocalDateTime fecha_aprobacion = extraerLocalDateTime(resultSet, "fecha_aprobacion");
-        LocalDateTime fecha_entrega = extraerLocalDateTime(resultSet, "fecha_entrega");
+        LocalDateTime fechaCreacion = extraerLocalDateTime(resultSet, "fecha_creacion");
+        LocalDateTime fechaAprobacion = extraerLocalDateTime(resultSet, "fecha_aprobacion");
+        LocalDateTime fechaEntrega = extraerLocalDateTime(resultSet, "fecha_entrega");
 
-        return new DtoPedido(id,referencia,estado,usuario_id,total,fecha_creacion,fecha_aprobacion,fecha_entrega);
+        return new DtoPedido(id,referencia,estado,usuarioId,total,fechaCreacion,fechaAprobacion,fechaEntrega);
     }
 
 }
