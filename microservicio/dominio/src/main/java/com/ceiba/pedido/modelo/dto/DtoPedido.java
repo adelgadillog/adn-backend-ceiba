@@ -1,8 +1,10 @@
 package com.ceiba.pedido.modelo.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import java.time.LocalDateTime;
 
+@Getter
 @AllArgsConstructor
 public class DtoPedido {
     private Long id;
@@ -14,35 +16,5 @@ public class DtoPedido {
     private LocalDateTime fechaAprobacion;
     private LocalDateTime fechaEntrega;
 
-    public Long getId() {
-        return id;
-    }
 
-    public String getReferencia() {
-        return referencia;
-    }
-
-    public Long getEstado() {
-        return estado;
-    }
-
-    public Long getUsuarioId() {
-        return usuarioId;
-    }
-
-    public Double getTotal() {
-        return total;
-    }
-
-    public LocalDateTime getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public LocalDateTime getFechaAprobacion() {
-        return fechaAprobacion;
-    }
-
-    public LocalDateTime getFechaEntrega() {
-        return fechaEntrega;
-    }
 }
