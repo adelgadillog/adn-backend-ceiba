@@ -49,8 +49,11 @@ public class ServicioAprobarPedido {
 
     private Double calcularTotal(List<DtoPedidoProducto> listaProducto, int fechaCreacion){
         double total = listaProducto.stream().mapToDouble(p->p.getPrecio()*p.getCantidad()).sum();
-        if(fechaCreacion <= 3) total = total * 0.5;
-        if(fechaCreacion == 15) total = total * 0.7;
+        if(fechaCreacion <= 3){
+            total = total * 0.5;
+        } else if(fechaCreacion == 15){
+            total = total * 0.7;
+        }
 
         return total;
     }
@@ -73,7 +76,12 @@ public class ServicioAprobarPedido {
         List<DtoProducto> listaProducto = daoProducto.listar(listaIdsProducto);
         listaProductoDto.forEach(p ->
                 {
-                    if (!map.containsKey(p.getIdProducto())) map.put(p.getIdProducto(), p.getCantidad());
+                    if (!map.containsKey(p.getIdProducto())){
+                        map.put(p.getIdProducto(), p.getCantidad());
+                    } else {
+                        Long cantidad = map.get(p.getIdProducto());
+                        map.put(p.getIdProducto(),cantidad+p.getCantidad());
+                    }
                 }
         );
         listaProducto.forEach(p ->
