@@ -44,8 +44,10 @@ pipeline {
 
     stage('Build') {
       steps {
-		sh 'chmod +x gradlew'
-        sh './microservicio/build.gradle build -x test'
+		dir("${PROJECT_PATH_BACK}")
+			{
+				sh 'gradle build -x test'
+			}
 
       }
     }  
