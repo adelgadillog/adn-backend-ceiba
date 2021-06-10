@@ -38,7 +38,7 @@ public class ServicioCrearProductoTest {
         Mockito.when(repositorioProducto.crear(producto)).thenReturn(idProductoEsperado);
         Long idProductoCreado = servicioCrearProducto.ejecutar(producto);
         // act - assert
-        assertEquals(idProductoCreado,idProductoEsperado);
+        assertEquals(idProductoEsperado,idProductoCreado);
     }
 
     @Test

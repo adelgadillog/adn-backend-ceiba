@@ -11,6 +11,7 @@ public class DtoPedidoProducto {
     private String nombreProducto;
     private Long cantidad;
     private Double precio;
+    private Long idProducto;
 
 
 }

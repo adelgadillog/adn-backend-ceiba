@@ -14,7 +14,7 @@ public class DaoProductoMysql implements DaoProducto {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
-    @SqlStatement(namespace="producto", value="listaProductosPedido")
+    @SqlStatement(namespace="producto", value="listar")
     private static String sqlListaProductosPedido;
 
     public DaoProductoMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
@@ -22,9 +22,8 @@ public class DaoProductoMysql implements DaoProducto {
     }
 
     @Override
-    public List<DtoProducto> listar(String referencia) {
-        MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("referenciaPedido", referencia);
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListaProductosPedido,paramSource, new MapeoProducto());
+    public List<DtoProducto> listar() {
+
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListaProductosPedido, new MapeoProducto());
     }
 }

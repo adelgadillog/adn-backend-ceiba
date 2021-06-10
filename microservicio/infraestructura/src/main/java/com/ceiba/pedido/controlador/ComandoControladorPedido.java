@@ -32,8 +32,8 @@ public class ComandoControladorPedido {
 	}
 
 	@PutMapping(value="/{referencia}")
-	@ApiOperation("Actualizar pedido")
-	public void actualizar(@RequestBody ComandoPedido comandoPedido, @PathVariable String referencia) {
+	@ApiOperation("Aprobar pedido")
+	public void aprobar(@RequestBody ComandoPedido comandoPedido, @PathVariable String referencia) {
 		comandoPedido.setReferencia(referencia);
 		manejadorActualizarPedido.ejecutar(comandoPedido);
 	}

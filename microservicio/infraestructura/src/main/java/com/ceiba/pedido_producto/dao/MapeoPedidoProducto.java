@@ -16,8 +16,9 @@ public class MapeoPedidoProducto implements RowMapper<DtoPedidoProducto>, Mapper
         String nombre = resultSet.getString("nombre");
         Long cantidad = resultSet.getLong("cantidad");
         Double precio = resultSet.getDouble("precio");
+        Long idProducto = resultSet.getLong("idProducto");
 
-        return new DtoPedidoProducto(referencia,nombre,cantidad,precio);
+        return new DtoPedidoProducto(referencia,nombre,cantidad,precio,idProducto);
     }
 
 }

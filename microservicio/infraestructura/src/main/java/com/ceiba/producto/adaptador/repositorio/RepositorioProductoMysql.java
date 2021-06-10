@@ -45,7 +45,10 @@ public class RepositorioProductoMysql implements RepositorioProducto {
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
     }
 
-
+    @Override
+    public List<Producto> listar() {
+        return null;
+    }
 
 
 }

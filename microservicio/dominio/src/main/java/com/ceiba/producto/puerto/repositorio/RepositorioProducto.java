@@ -22,7 +22,11 @@ public interface RepositorioProducto {
     boolean existe(Long id);
 
 
-
+    /**
+     * Permite obtener la lista de productos
+     * @return lista producutos
+     */
+    List<Producto> listar();
 
 
 }

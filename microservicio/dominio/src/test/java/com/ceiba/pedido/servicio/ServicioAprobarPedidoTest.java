@@ -6,6 +6,8 @@ import com.ceiba.pedido.modelo.entidad.Pedido;
 import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
 import com.ceiba.pedido.servicio.testdatabuilder.PedidoTestDataBuilder;
 import com.ceiba.pedido_producto.puerto.dao.DaoPedidoProducto;
+import com.ceiba.producto.puerto.dao.DaoProducto;
+import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +21,7 @@ public class ServicioAprobarPedidoTest {
 
     private Pedido pedido;
     private RepositorioPedido repositorioPedido;
+    private DaoProducto daoProducto;
     private DaoPedidoProducto daoPedidoProducto;
     private ServicioAprobarPedido servicioAprobarPedido;
 
@@ -28,7 +31,7 @@ public class ServicioAprobarPedidoTest {
         this.pedido = new PedidoTestDataBuilder().conId(1L).build();
         this.repositorioPedido = Mockito.mock(RepositorioPedido.class);
         this.daoPedidoProducto = Mockito.mock(DaoPedidoProducto.class);
-        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido,daoPedidoProducto);
+        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido,daoPedidoProducto,daoProducto);
     }
 
     @Test
@@ -46,7 +49,7 @@ public class ServicioAprobarPedidoTest {
     public void existenciaDebeRetornarExcepcion(){
         // arrange
         Mockito.when(repositorioPedido.existe(Mockito.anyString())).thenReturn(false);
-        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido,daoPedidoProducto);
+        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido,daoPedidoProducto,daoProducto);
 
         // act - assert
         BasePrueba.assertThrows(() -> servicioAprobarPedido.ejecutar(pedido), ExcepcionDuplicidad.class,"Para la referencia no existe pedido registrado en el sistema");
@@ -57,7 +60,7 @@ public class ServicioAprobarPedidoTest {
     public void existenciaCuandoExistePedido(){
         // arrange
         Mockito.when(repositorioPedido.existe(Mockito.anyString())).thenReturn(true);
-        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido,daoPedidoProducto);
+        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido,daoPedidoProducto,daoProducto);
 
         // act - assert
         BasePrueba.assertExecute(() -> servicioAprobarPedido.ejecutar(pedido), ExcepcionDuplicidad.class,"Para la referencia no existe pedido registrado en el sistema");
@@ -69,7 +72,7 @@ public class ServicioAprobarPedidoTest {
         // arrange
         this.pedido = new PedidoTestDataBuilder().conFechaCreacion(LocalDateTime.of(2021,6,2,5,30,12,122)).build();
         Mockito.when(repositorioPedido.existe(Mockito.anyString())).thenReturn(true);
-        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido,daoPedidoProducto);
+        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido,daoPedidoProducto,daoProducto);
 
         // act - assert
         BasePrueba.assertExecute(() -> servicioAprobarPedido.ejecutar(pedido), ExcepcionDuplicidad.class,"Para la referencia no existe  pedido registrado en el sistema");
@@ -80,7 +83,7 @@ public class ServicioAprobarPedidoTest {
         //arrange
         this.pedido = new PedidoTestDataBuilder().conFechaCreacion(LocalDateTime.of(2021,6,15,5,30,12,122)).build();
         Mockito.when(repositorioPedido.existe(Mockito.anyString())).thenReturn(true);
-        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido,daoPedidoProducto);
+        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido,daoPedidoProducto,daoProducto);
 
         // act - assert
         BasePrueba.assertExecute(() -> servicioAprobarPedido.ejecutar(pedido), ExcepcionDuplicidad.class,"Para la referencia no existe  pedido registrado en el sistema");

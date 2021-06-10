@@ -10,5 +10,5 @@ public interface DaoProducto {
      * Permite listar pedidos
      * @return los pedidos
      */
-    List<DtoProducto> listar(String referencia);
+    List<DtoProducto> listar();
 }
