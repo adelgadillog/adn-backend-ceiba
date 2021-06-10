@@ -1,31 +1,22 @@
 pipeline {
-  //Donde se va a ejecutar el Pipeline
+  
   agent {
     label 'Slave4_Induccion'
   }
 
-  //Opciones específicas de Pipeline dentro del Pipeline
+ 
   options {
     	buildDiscarder(logRotator(numToKeepStr: '3'))
  	disableConcurrentBuilds()
   }
-
-  //Una sección que define las herramientas “preinstaladas” en Jenkins
+	environment {
+        PROJECT_PATH_BACK = './'
+	}
+  
   tools {
     jdk 'JDK8_Centos' //Verisión preinstalada en la Configuración del Master
   }
-/*	Versiones disponibles
-      JDK8_Mac
-      JDK6_Centos
-      JDK7_Centos
-      JDK8_Centos
-      JDK10_Centos
-      JDK11_Centos
-      JDK13_Centos
-      JDK14_Centos
-*/
 
-  //Aquí comienzan los “items” del Pipeline
   stages{
     stage('Checkout') {
       steps{
@@ -53,8 +44,8 @@ pipeline {
 
     stage('Build') {
       steps {
-		sh 'chmod +x gradlew'
-        sh './microservicio/gradlew --b ./microservicio/build.gradle build -x test'
+		
+        sh './microservicio/build.gradle build -x test'
 
       }
     }  
