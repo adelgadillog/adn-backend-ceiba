@@ -6,14 +6,12 @@ import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
 import com.ceiba.pedido_producto.modelo.dto.DtoPedidoProducto;
 import com.ceiba.pedido_producto.puerto.dao.DaoPedidoProducto;
 import com.ceiba.producto.modelo.dto.DtoProducto;
-import com.ceiba.producto.modelo.entidad.Producto;
 import com.ceiba.producto.puerto.dao.DaoProducto;
-import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
-
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ServicioAprobarPedido {
 
@@ -32,11 +30,11 @@ public class ServicioAprobarPedido {
     public void ejecutar(Pedido pedido) {
         validarExistencia(pedido);
         List<DtoPedidoProducto> listaProductoDto = daoPedidoProducto.listar(pedido.getReferencia());
-        List<DtoProducto> listaProducto = daoProducto.listar();
-        validarCantidadDisponible(listaProductoDto,listaProducto);
-        pedido.setTotal(calcularTotal(listaProductoDto,pedido.getFecha_creacion().getDayOfMonth()));
-        pedido.setFecha_aprobacion(LocalDateTime.now());
-        pedido.setFecha_entrega(calcularFechaEntrega(pedido.getFecha_creacion()));
+
+        validarCantidadDisponible(listaProductoDto);
+        pedido.setTotal(calcularTotal(listaProductoDto,pedido.getFechaCreacion().getDayOfMonth()));
+        pedido.setFechaAprobacion(LocalDateTime.now());
+        pedido.setFechaEntrega(calcularFechaEntrega(pedido.getFechaCreacion()));
 
         this.repositorioPedido.aprobar(pedido);
     }
@@ -69,14 +67,16 @@ public class ServicioAprobarPedido {
         return result;
     }
 
-    private void validarCantidadDisponible(List<DtoPedidoProducto> listaProductoDto, List<DtoProducto> listaProducto) {
+    private void validarCantidadDisponible(List<DtoPedidoProducto> listaProductoDto) {
         HashMap<Long,Long> map = new HashMap<>();
-        listaProductoDto.stream().forEach((p) ->
+        List<Long> listaIdsProducto = listaProductoDto.stream().map(DtoPedidoProducto::getIdProducto).collect(Collectors.toList());
+        List<DtoProducto> listaProducto = daoProducto.listar(listaIdsProducto);
+        listaProductoDto.forEach(p ->
                 {
                     if (!map.containsKey(p.getIdProducto())) map.put(p.getIdProducto(), p.getCantidad());
                 }
         );
-        listaProducto.stream().forEach((p) ->
+        listaProducto.forEach(p ->
                 {
                     if(map.containsKey(p.getId()) &&  map.get(p.getId()) > p.getCantidadDisponible()) {
                         throw new ExcepcionDuplicidad(EL_PRODUCTO_NO_CUENTA_CON_UNIDADES_DISPONIBLES);

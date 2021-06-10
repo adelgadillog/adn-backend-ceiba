@@ -1,7 +1,5 @@
 package com.ceiba.core;
 
-import static org.junit.Assert.fail;
-
 import java.util.function.Supplier;
 
 import org.junit.Assert;
@@ -14,7 +12,7 @@ public class BasePrueba {
 	public static <T> void assertThrows(Supplier<T> supplier, Class<? extends Exception> exception, String message) {
 		try {
 			supplier.get();
-			fail();
+			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertTrue(SE_ESPERABA_LA_EXCEPCION + exception.getCanonicalName() + PERO_FUE_LANZADA
 					+ e.getClass().getCanonicalName(), exception.isInstance(e));
@@ -25,7 +23,7 @@ public class BasePrueba {
 	public static void assertThrows(Thunk thunk, Class<? extends Exception> exception, String message) {
 		try {
 			thunk.execute();
-			fail();
+			Assert.fail();
 		} catch (Exception e) {
 			Assert.assertTrue(SE_ESPERABA_LA_EXCEPCION + exception.getCanonicalName() + PERO_FUE_LANZADA
 					+ e.getClass().getCanonicalName(), exception.isInstance(e));

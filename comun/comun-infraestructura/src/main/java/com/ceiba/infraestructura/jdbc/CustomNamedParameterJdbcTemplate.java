@@ -2,7 +2,6 @@ package com.ceiba.infraestructura.jdbc;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-
 import com.ceiba.infraestructura.excepcion.ExcepcionTecnica;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;

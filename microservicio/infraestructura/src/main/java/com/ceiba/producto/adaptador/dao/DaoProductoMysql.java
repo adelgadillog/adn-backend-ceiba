@@ -4,6 +4,7 @@ import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import com.ceiba.producto.modelo.dto.DtoProducto;
 import com.ceiba.producto.puerto.dao.DaoProducto;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -21,8 +22,9 @@ public class DaoProductoMysql implements DaoProducto {
     }
 
     @Override
-    public List<DtoProducto> listar() {
-
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListaProductosPedido, new MapeoProducto());
+    public List<DtoProducto> listar(List<Long> listaIdProducto) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("listaIdProducto", listaIdProducto);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListaProductosPedido, paramSource,new MapeoProducto());
     }
 }

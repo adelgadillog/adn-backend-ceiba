@@ -1,2 +1,2 @@
 select  id, nombre,  precio,  cantidadDisponible
-from producto
+from producto where id in (:listaIdProducto)

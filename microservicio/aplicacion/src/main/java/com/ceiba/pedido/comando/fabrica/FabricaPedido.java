@@ -9,8 +9,8 @@ public class FabricaPedido {
 
     public Pedido crear(ComandoPedido comandoPedido) {
         return new Pedido(comandoPedido.getId(), comandoPedido.getReferencia(), comandoPedido.getEstado(),
-                comandoPedido.getUsuario_id(), comandoPedido.getTotal(), comandoPedido.getFecha_creacion(),
-                comandoPedido.getFecha_aprobacion(), comandoPedido.getFecha_entrega());
+                comandoPedido.getUsuarioId(), comandoPedido.getTotal(), comandoPedido.getFechaCreacion(),
+                comandoPedido.getFechaAprobacion(), comandoPedido.getFechaEntrega());
     }
 
 }

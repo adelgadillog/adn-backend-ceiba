@@ -10,11 +10,11 @@ public class DtoPedido {
     private Long id;
     private String referencia;
     private Long estado;
-    private Long usuario_id;
+    private Long usuarioId;
     private Double total;
-    private LocalDateTime fecha_creacion;
-    private LocalDateTime fecha_aprobacion;
-    private LocalDateTime fecha_entrega;
+    private LocalDateTime fechaCreacion;
+    private LocalDateTime fechaAprobacion;
+    private LocalDateTime fechaEntrega;
 
 
 }

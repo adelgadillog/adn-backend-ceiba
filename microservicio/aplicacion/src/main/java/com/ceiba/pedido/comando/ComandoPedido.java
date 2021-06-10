@@ -1,9 +1,6 @@
 package com.ceiba.pedido.comando;
 
 import java.time.LocalDateTime;
-import java.util.List;
-
-import com.ceiba.producto.modelo.entidad.Producto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,9 +15,9 @@ public class ComandoPedido {
     private Long id;
     private String referencia;
     private Long estado;
-    private Long usuario_id;
+    private Long usuarioId;
     private Double total;
-    private LocalDateTime fecha_creacion;
-    private LocalDateTime fecha_aprobacion;
-    private LocalDateTime fecha_entrega;
+    private LocalDateTime fechaCreacion;
+    private LocalDateTime fechaAprobacion;
+    private LocalDateTime fechaEntrega;
 }

@@ -10,5 +10,5 @@ public interface DaoProducto {
      * Permite listar productos
      * @return los productos
      */
-    List<DtoProducto> listar();
+    List<DtoProducto> listar(List<Long> listaIdProducto);
 }

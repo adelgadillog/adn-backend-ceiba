@@ -1,9 +1,11 @@
 package com.ceiba.producto.modelo.entidad;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public class Producto {
 
     private Long id;
@@ -17,10 +19,5 @@ public class Producto {
         this.precio = precio;
     }
 
-    public Producto(Long id,String nombre, Long cantidadDisponible, Double precio) {
-        this.nombre = nombre;
-        this.cantidadDisponible = cantidadDisponible;
-        this.precio = precio;
-        this.id = id;
-    }
+
 }
