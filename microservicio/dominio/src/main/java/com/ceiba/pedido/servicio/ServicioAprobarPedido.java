@@ -48,7 +48,7 @@ public class ServicioAprobarPedido {
     }
 
     private Double calcularTotal(List<DtoPedidoProducto> listaProducto, int fechaCreacion){
-        double total = listaProducto.stream().mapToDouble(DtoPedidoProducto::getPrecio).sum();
+        double total = listaProducto.stream().mapToDouble(p->p.getPrecio()*p.getCantidad()).sum();
         if(fechaCreacion <= 3) total = total * 0.5;
         if(fechaCreacion == 15) total = total * 0.7;
 

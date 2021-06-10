@@ -15,6 +15,7 @@ import org.junit.runners.JUnit4;
 import org.mockito.Mockito;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @RunWith(JUnit4.class)
 public class ServicioAprobarPedidoTest {
@@ -73,6 +74,7 @@ public class ServicioAprobarPedidoTest {
         // arrange
         this.pedido = new PedidoTestDataBuilder().conFechaCreacion(LocalDateTime.of(2021,6,2,5,30,12,122)).build();
         Mockito.when(repositorioPedido.existe(Mockito.anyString())).thenReturn(true);
+        Mockito.when(daoPedidoProducto.listar(Mockito.anyString())).thenReturn(new PedidoTestDataBuilder().listar());
         this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido,daoPedidoProducto,daoProducto);
 
         // act - assert
@@ -84,6 +86,7 @@ public class ServicioAprobarPedidoTest {
         //arrange
         this.pedido = new PedidoTestDataBuilder().conFechaCreacion(LocalDateTime.of(2021,6,15,5,30,12,122)).build();
         Mockito.when(repositorioPedido.existe(Mockito.anyString())).thenReturn(true);
+        Mockito.when(daoPedidoProducto.listar(Mockito.anyString())).thenReturn(new PedidoTestDataBuilder().listar());
         this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido,daoPedidoProducto,daoProducto);
 
         // act - assert

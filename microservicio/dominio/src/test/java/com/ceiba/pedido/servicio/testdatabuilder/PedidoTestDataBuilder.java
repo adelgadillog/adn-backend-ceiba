@@ -1,26 +1,29 @@
 package com.ceiba.pedido.servicio.testdatabuilder;
 
 import com.ceiba.pedido.modelo.entidad.Pedido;
+import com.ceiba.pedido_producto.modelo.dto.DtoPedidoProducto;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PedidoTestDataBuilder {
 
     private Long id;
     private String referencia;
     private Long estado;
-    private Long usuario_id;
+    private Long usuarioId;
     private Double total;
-    private LocalDateTime fecha_creacion;
-    private LocalDateTime fecha_aprobacion;
-    private LocalDateTime fecha_entrega;
+    private LocalDateTime fechaCreacion;
+    private LocalDateTime fechaAprobacion;
+    private LocalDateTime fechaEntrega;
 
     public PedidoTestDataBuilder() {
         referencia = "00001";
         estado = 1L;
-        usuario_id = 17L;
+        usuarioId = 17L;
         total = 1000d;
-        fecha_creacion = LocalDateTime.now();
+        fechaCreacion = LocalDateTime.now();
     }
 
 
@@ -31,11 +34,18 @@ public class PedidoTestDataBuilder {
     }
 
     public Pedido build() {
-        return new Pedido( id, referencia,  estado,  usuario_id, total, fecha_creacion, fecha_aprobacion, fecha_entrega);
+        return new Pedido( id, referencia,  estado, usuarioId, total, fechaCreacion, fechaAprobacion, fechaEntrega);
     }
 
-    public PedidoTestDataBuilder conFechaCreacion(LocalDateTime fecha_creacion) {
-        this.fecha_creacion = fecha_creacion;
+    public PedidoTestDataBuilder conFechaCreacion(LocalDateTime fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
         return this;
+    }
+
+    public List<DtoPedidoProducto> listar(){
+        List<DtoPedidoProducto> lista = new ArrayList<>();
+        lista.add(new DtoPedidoProducto("00001","Auriculares",2L,100000D,1L));
+        lista.add(new DtoPedidoProducto("00001","Celular",1L,9000000D,2L));
+        return lista;
     }
 }
