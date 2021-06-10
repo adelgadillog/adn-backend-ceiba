@@ -61,7 +61,7 @@ pipeline {
 			}
 		}
 	}
-    stage('Sonar Analysis dominio'){
+    stage('Sonar Analysis'){
 		steps{
 			echo '------------>Analisis de código estático<------------'
 			withSonarQubeEnv('Sonar') {
