@@ -14,7 +14,8 @@ pipeline {
 	}
   
   tools {
-    jdk 'JDK8_Centos' //Verisión preinstalada en la Configuración del Master
+    jdk 'JDK8_Centos'
+	gradle 'Gradle5.0_Centos' 
   }
 
   stages{
