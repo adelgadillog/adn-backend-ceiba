@@ -31,6 +31,7 @@ public class ServicioAprobarPedidoTest {
         this.pedido = new PedidoTestDataBuilder().conId(1L).build();
         this.repositorioPedido = Mockito.mock(RepositorioPedido.class);
         this.daoPedidoProducto = Mockito.mock(DaoPedidoProducto.class);
+        this.daoProducto = Mockito.mock(DaoProducto.class);
         this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido,daoPedidoProducto,daoProducto);
     }
 
