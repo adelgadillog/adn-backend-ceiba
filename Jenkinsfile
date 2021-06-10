@@ -38,7 +38,15 @@ pipeline {
       }
     }
     
-    
+    stage('Build') {
+      steps {
+		dir("${PROJECT_PATH_BACK}")
+			{
+				sh 'gradle build -x test'
+			}
+
+      }
+    }  
 
 	stage('Test Unitarios -Cobertura'){
 		parallel {
@@ -53,17 +61,16 @@ pipeline {
 			}
 		}
 	}
-    
-
-    stage('Build') {
-      steps {
-		dir("${PROJECT_PATH_BACK}")
-			{
-				sh 'gradle build -x test'
+    stage('Sonar Analysis'){
+				steps{
+					echo '------------>Analisis de código estático<------------'
+					  withSonarQubeEnv('Sonar') {
+                     sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=./sonar-project.properties"
+                     }
+				}
 			}
 
-      }
-    }  
+    
 	
   }
 
