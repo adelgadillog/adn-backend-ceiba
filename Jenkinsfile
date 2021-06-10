@@ -65,7 +65,7 @@ pipeline {
 		steps{
 			echo '------------>Analisis de código estático<------------'
 			withSonarQubeEnv('Sonar') {
-                     sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=./sonar-project-dominio.properties"
+                     sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=./microservicio/dominio/sonar-project.properties"
             }
 		}
 	}
