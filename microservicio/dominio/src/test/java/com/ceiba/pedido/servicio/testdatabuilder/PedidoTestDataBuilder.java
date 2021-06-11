@@ -2,6 +2,7 @@ package com.ceiba.pedido.servicio.testdatabuilder;
 
 import com.ceiba.pedido.modelo.entidad.Pedido;
 import com.ceiba.pedido_producto.modelo.dto.DtoPedidoProducto;
+import com.ceiba.pedido_producto.modelo.dto.DtoDetallePedido;
 import com.ceiba.producto.modelo.dto.DtoProducto;
 
 import java.time.LocalDateTime;
@@ -18,6 +19,7 @@ public class PedidoTestDataBuilder {
     private LocalDateTime fechaCreacion;
     private LocalDateTime fechaAprobacion;
     private LocalDateTime fechaEntrega;
+    private List<DtoDetallePedido> detallePedido;
 
     public PedidoTestDataBuilder() {
         referencia = "00001";
@@ -25,6 +27,7 @@ public class PedidoTestDataBuilder {
         usuarioId = 17L;
         total = 1000d;
         fechaCreacion = LocalDateTime.now();
+
     }
 
 
@@ -35,7 +38,7 @@ public class PedidoTestDataBuilder {
     }
 
     public Pedido build() {
-        return new Pedido( id, referencia,  estado, usuarioId, total, fechaCreacion, fechaAprobacion, fechaEntrega);
+        return new Pedido(referencia,  estado, usuarioId, total, fechaCreacion,detallePedido);
     }
 
     public PedidoTestDataBuilder conFechaCreacion(LocalDateTime fechaCreacion) {
@@ -47,6 +50,13 @@ public class PedidoTestDataBuilder {
         List<DtoPedidoProducto> lista = new ArrayList<>();
         lista.add(new DtoPedidoProducto("00001","Auriculares",2L,100000D,1L));
         lista.add(new DtoPedidoProducto("00001","Celular",1L,9000000D,2L));
+        return lista;
+    }
+
+    public List<DtoDetallePedido> listarPedidoProductoCantidad(){
+        List<DtoDetallePedido> lista = new ArrayList<>();
+        lista.add(new DtoDetallePedido(1L,"Auriculares", 2L, 3L,100000D ));
+        lista.add(new DtoDetallePedido(2L,"Celular", 2L, 3L,9000000D ));
         return lista;
     }
 

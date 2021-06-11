@@ -8,9 +8,8 @@ import com.ceiba.pedido.comando.ComandoPedido;
 public class FabricaPedido {
 
     public Pedido crear(ComandoPedido comandoPedido) {
-        return new Pedido(comandoPedido.getId(), comandoPedido.getReferencia(), comandoPedido.getEstado(),
-                comandoPedido.getUsuarioId(), comandoPedido.getTotal(), comandoPedido.getFechaCreacion(),
-                comandoPedido.getFechaAprobacion(), comandoPedido.getFechaEntrega());
+        return new Pedido(comandoPedido.getReferencia(), comandoPedido.getEstado(),
+                comandoPedido.getUsuarioId(), comandoPedido.getTotal(), comandoPedido.getFechaCreacion(),comandoPedido.getDetallePedido());
     }
 
 }

@@ -21,6 +21,10 @@ public class RepositorioPedidoMysql implements RepositorioPedido {
     @SqlStatement(namespace="pedido", value="existe")
     private static String sqlExiste;
 
+    @SqlStatement(namespace="pedido", value="totalPedido")
+    private static String sqlTotalPedido;
+
+
     public RepositorioPedidoMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -37,6 +41,13 @@ public class RepositorioPedidoMysql implements RepositorioPedido {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("referencia", referencia);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
+    }
+
+    @Override
+    public Double total(String referencia) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("referenciaPedido", referencia);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlTotalPedido,paramSource,Double.class);
     }
 
     @Override

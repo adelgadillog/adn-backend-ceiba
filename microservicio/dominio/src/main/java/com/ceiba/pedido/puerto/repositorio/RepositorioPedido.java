@@ -24,5 +24,6 @@ public interface RepositorioPedido {
     boolean existe(String referencia);
 
 
+    Double total(String referencia);
 
 }

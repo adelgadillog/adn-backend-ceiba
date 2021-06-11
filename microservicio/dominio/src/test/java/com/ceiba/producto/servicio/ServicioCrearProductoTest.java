@@ -2,10 +2,6 @@ package com.ceiba.producto.servicio;
 
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
-import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
-import com.ceiba.pedido.servicio.ServicioAprobarPedido;
-import com.ceiba.pedido.servicio.testdatabuilder.PedidoTestDataBuilder;
-import com.ceiba.pedido_producto.puerto.dao.DaoPedidoProducto;
 import com.ceiba.producto.modelo.entidad.Producto;
 import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
 import com.ceiba.producto.servicio.testdatabuilder.ProductoTestDataBuilder;
