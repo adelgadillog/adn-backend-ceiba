@@ -54,7 +54,7 @@ public class ServicioAprobarPedidoTest {
     }
 
     @Test
-    public void existenciaDebeRetornarExcepcion(){
+    public void ejecutarAprobarNoExistePedidoDebeRetornarExcepcion(){
         // arrange
         Mockito.when(repositorioPedido.existe(Mockito.anyString())).thenReturn(false);
         this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido, daoDetallePedido);
@@ -64,16 +64,7 @@ public class ServicioAprobarPedidoTest {
 
     }
 
-    @Test
-    public void existenciaCuandoExistePedido(){
-        // arrange
-        Mockito.when(repositorioPedido.existe(Mockito.anyString())).thenReturn(true);
-        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido, daoDetallePedido);
-
-        // act - assert
-        BasePrueba.assertExecute(() -> servicioAprobarPedido.ejecutar(pedido));
-
-    }
+   
 
     @Test
     public void calcularTotalElDiaEsTres(){
