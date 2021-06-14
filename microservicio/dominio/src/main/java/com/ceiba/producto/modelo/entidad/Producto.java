@@ -13,4 +13,11 @@ public class Producto {
     private Long cantidadDisponible;
     private Double precio;
 
+    public Producto(String nombre, Long cantidadDisponible, Double precio) {
+        this.nombre = nombre;
+        this.cantidadDisponible = cantidadDisponible;
+        this.precio = precio;
+    }
+
+
 }
