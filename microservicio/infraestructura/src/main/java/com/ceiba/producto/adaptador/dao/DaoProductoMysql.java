@@ -2,10 +2,8 @@ package com.ceiba.producto.adaptador.dao;
 
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
-import com.ceiba.producto.modelo.dto.DtoProducto;
 import com.ceiba.producto.modelo.entidad.Producto;
 import com.ceiba.producto.puerto.dao.DaoProducto;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

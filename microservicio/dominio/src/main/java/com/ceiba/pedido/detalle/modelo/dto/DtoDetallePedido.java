@@ -5,11 +5,12 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class DtoDetallePedido implements Cloneable{
+public class DtoDetallePedido {
     private Long idProducto;
     private String nombreProducto;
     private Long cantidadPedido;
     private Long cantidadDisponible;
     private Double precio;
+
 
 }

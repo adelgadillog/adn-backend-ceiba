@@ -1,19 +1,14 @@
 package com.ceiba.pedido.modelo.entidad;
 
-
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.pedido.detalle.modelo.dto.DtoDetallePedido;
 import lombok.Getter;
-import lombok.Setter;
-
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.List;
-
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
 @Getter
-@Setter
 public class Pedido {
 
     private static final String EL_PEDIDO_DEBE_TENER_UNA_REFERENCIA = "El pedido debe tener una referencia";
@@ -45,7 +40,6 @@ public class Pedido {
     private LocalDateTime fechaCreacion;
     private LocalDateTime fechaAprobacion;
     private LocalDateTime fechaEntrega;
-
     private List<DtoDetallePedido> detallePedido;
 
     public Pedido(String referencia, Long estado, Long usuarioId, Double total, LocalDateTime fechaCreacion,List<DtoDetallePedido> detallePedido) {
@@ -58,7 +52,7 @@ public class Pedido {
         this.usuarioId = usuarioId;
         this.fechaCreacion = fechaCreacion;
         this.total = total;
-        this.detallePedido = detallePedido;
+        this.detallePedido  = detallePedido;
         if(Estado.APROBADO.value.equals(this.estado)){
             validarObligatorio(detallePedido,EL_PEDIDO_DEBE_TENER_UN_DETALLE);
             validarCantidadDisponible();
@@ -71,22 +65,21 @@ public class Pedido {
 
     }
 
-    private Double calcularTotal(){
+    private void calcularTotal(){
 
         if(this.fechaCreacion.getDayOfMonth() <= FECHA_CREACION_TRES){
             this.total = this.total * DESCUENTO_FECHA_CREACION_TRES;
         } else if(this.fechaCreacion.getDayOfMonth() == FECHA_CREACION_QUINCE){
-            total = total * DESCUENTO_FECHA_CREACION_QUINCE;
+            this.total = this.total * DESCUENTO_FECHA_CREACION_QUINCE;
         }
-        return total;
     }
 
     private void calcularFechaEntrega() {
-
+        this.fechaEntrega = this.fechaCreacion;
         int addedDays = 0;
         while (addedDays < DIAS_HABILES_ENTREGA) {
-            this.fechaCreacion = this.fechaCreacion.plusDays(1);
-            if (!(this.fechaCreacion.getDayOfWeek() == DayOfWeek.SATURDAY || this.fechaCreacion.getDayOfWeek() == DayOfWeek.SUNDAY)) {
+            this.fechaEntrega = this.fechaEntrega.plusDays(1);
+            if (!(this.fechaEntrega.getDayOfWeek() == DayOfWeek.SATURDAY || this.fechaEntrega.getDayOfWeek() == DayOfWeek.SUNDAY)) {
                 ++addedDays;
             }
         }
