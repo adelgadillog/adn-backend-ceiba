@@ -6,9 +6,4 @@ import java.util.List;
 
 public interface DaoProducto {
 
-    /**
-     * Permite listar productos
-     * @return los productos
-     */
-    List<Producto> listar();
 }
