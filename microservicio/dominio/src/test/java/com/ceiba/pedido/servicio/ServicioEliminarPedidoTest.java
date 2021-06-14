@@ -5,7 +5,7 @@ import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.pedido.modelo.entidad.Pedido;
 import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
 import com.ceiba.pedido.servicio.testdatabuilder.PedidoTestDataBuilder;
-import com.ceiba.pedido_producto.puerto.dao.DaoDetallePedido;
+import com.ceiba.pedido.detalle.puerto.dao.DaoDetallePedido;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

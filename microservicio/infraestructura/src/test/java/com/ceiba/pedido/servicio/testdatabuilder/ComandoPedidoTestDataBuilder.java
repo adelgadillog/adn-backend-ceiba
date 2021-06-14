@@ -1,8 +1,7 @@
 package com.ceiba.pedido.servicio.testdatabuilder;
 
 import com.ceiba.pedido.comando.ComandoPedido;
-import com.ceiba.pedido_producto.modelo.dto.DtoDetallePedido;
-import com.ceiba.producto.modelo.entidad.Producto;
+import com.ceiba.pedido.detalle.modelo.dto.DtoDetallePedido;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

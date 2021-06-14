@@ -37,6 +37,10 @@ public class BasePrueba {
         thunk.execute();
     }
 
+    public static void assertEquals(Object obj1,Object obj2){
+        Assert.assertEquals(obj1,obj2);
+    }
+
     @FunctionalInterface
     public interface Thunk {
         void execute();

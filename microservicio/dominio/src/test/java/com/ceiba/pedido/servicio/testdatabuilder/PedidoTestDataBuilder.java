@@ -1,8 +1,7 @@
 package com.ceiba.pedido.servicio.testdatabuilder;
 
 import com.ceiba.pedido.modelo.entidad.Pedido;
-import com.ceiba.pedido_producto.modelo.dto.DtoPedidoProducto;
-import com.ceiba.pedido_producto.modelo.dto.DtoDetallePedido;
+import com.ceiba.pedido.detalle.modelo.dto.DtoDetallePedido;
 import com.ceiba.producto.modelo.dto.DtoProducto;
 
 import java.time.LocalDateTime;
@@ -25,7 +24,6 @@ public class PedidoTestDataBuilder {
         referencia = "00001";
         estado = 1L;
         usuarioId = 17L;
-        total = 1000d;
         fechaCreacion = LocalDateTime.now();
 
     }
@@ -46,34 +44,23 @@ public class PedidoTestDataBuilder {
         return this;
     }
 
-    public List<DtoPedidoProducto> listarPedidoProducto(){
-        List<DtoPedidoProducto> lista = new ArrayList<>();
-        lista.add(new DtoPedidoProducto("00001","Auriculares",2L,100000D,1L));
-        lista.add(new DtoPedidoProducto("00001","Celular",1L,9000000D,2L));
-        return lista;
-    }
 
-    public List<DtoDetallePedido> listarPedidoProductoCantidad(){
+
+    public List<DtoDetallePedido> listarDetallePedido(){
         List<DtoDetallePedido> lista = new ArrayList<>();
         lista.add(new DtoDetallePedido(1L,"Auriculares", 2L, 3L,100000D ));
         lista.add(new DtoDetallePedido(2L,"Celular", 2L, 3L,9000000D ));
         return lista;
     }
 
-    public List<DtoProducto> listarProducto(){
-        List<DtoProducto> lista = new ArrayList<>();
-        lista.add(new DtoProducto(1L,"Auriculares",1L,100000D));
-        lista.add(new DtoProducto(1L,"Celular",2L,9000000D));
+    public List<DtoDetallePedido> listarPedidoProductoNoExisteCantidad(){
+        List<DtoDetallePedido> lista = new ArrayList<>();
+        lista.add(new DtoDetallePedido(1L,"Auriculares", 5L, 3L,500000D ));
+        lista.add(new DtoDetallePedido(2L,"Celular", 2L, 3L,9000000D ));
         return lista;
     }
 
-    public List<DtoPedidoProducto> listarPedidoProductoRepedito(){
-        List<DtoPedidoProducto> lista = new ArrayList<>();
-        lista.add(new DtoPedidoProducto("00001","Auriculares",1L,100000D,1L));
-        lista.add(new DtoPedidoProducto("00001","Celular",1L,9000000D,2L));
-        lista.add(new DtoPedidoProducto("00001","Celular",1L,9000000D,1L));
-        return lista;
-    }
+
 
 
 }

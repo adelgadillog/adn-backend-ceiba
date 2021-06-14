@@ -2,7 +2,7 @@ package com.ceiba.configuracion;
 
 import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
 import com.ceiba.pedido.servicio.ServicioAprobarPedido;
-import com.ceiba.pedido_producto.puerto.dao.DaoDetallePedido;
+import com.ceiba.pedido.detalle.puerto.dao.DaoDetallePedido;
 import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
 import com.ceiba.producto.servicio.ServicioCrearProducto;
 import com.ceiba.pedido.servicio.ServicioEliminarPedido;

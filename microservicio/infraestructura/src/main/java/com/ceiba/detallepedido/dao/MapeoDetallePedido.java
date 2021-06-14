@@ -1,7 +1,7 @@
-package com.ceiba.pedido_producto.dao;
+package com.ceiba.detallepedido.dao;
 
 import com.ceiba.infraestructura.jdbc.MapperResult;
-import com.ceiba.pedido_producto.modelo.dto.DtoDetallePedido;
+import com.ceiba.pedido.detalle.modelo.dto.DtoDetallePedido;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

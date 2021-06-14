@@ -3,7 +3,7 @@ package com.ceiba.pedido.comando;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.ceiba.pedido_producto.modelo.dto.DtoDetallePedido;
+import com.ceiba.pedido.detalle.modelo.dto.DtoDetallePedido;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

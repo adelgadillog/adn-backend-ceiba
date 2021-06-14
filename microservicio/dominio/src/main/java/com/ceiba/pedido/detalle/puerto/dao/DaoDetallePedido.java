@@ -1,6 +1,7 @@
-package com.ceiba.pedido_producto.puerto.dao;
+package com.ceiba.pedido.detalle.puerto.dao;
 
-import com.ceiba.pedido_producto.modelo.dto.DtoDetallePedido;
+import com.ceiba.pedido.detalle.modelo.dto.DtoDetallePedido;
+
 import java.util.List;
 
 public interface DaoDetallePedido {

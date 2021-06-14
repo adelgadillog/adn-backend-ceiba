@@ -1,15 +1,16 @@
-package com.ceiba.pedido_producto.dao;
+package com.ceiba.detallepedido.dao;
 
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
-import com.ceiba.pedido_producto.modelo.dto.DtoDetallePedido;
+import com.ceiba.pedido.detalle.modelo.dto.DtoDetallePedido;
+import com.ceiba.pedido.detalle.puerto.dao.DaoDetallePedido;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class DaoDetalleDetallePedido implements com.ceiba.pedido_producto.puerto.dao.DaoDetallePedido {
+public class DaoDetalleDetallePedido implements DaoDetallePedido {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 

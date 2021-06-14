@@ -3,8 +3,8 @@ package com.ceiba.pedido.servicio;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.pedido.modelo.entidad.Pedido;
 import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
-import com.ceiba.pedido_producto.modelo.dto.DtoDetallePedido;
-import com.ceiba.pedido_producto.puerto.dao.DaoDetallePedido;
+import com.ceiba.pedido.detalle.modelo.dto.DtoDetallePedido;
+import com.ceiba.pedido.detalle.puerto.dao.DaoDetallePedido;
 import java.util.List;
 
 public class ServicioAprobarPedido {
@@ -29,9 +29,9 @@ public class ServicioAprobarPedido {
 
     public void ejecutar(Pedido pedido) {
         validarExistencia(pedido);
-        List<DtoDetallePedido> detallePedidos = daoDetallePedido.listar(pedido.getReferencia());
+        List<DtoDetallePedido> detallePedido = daoDetallePedido.listar(pedido.getReferencia());
         Pedido pedidoAprobado = new Pedido(pedido.getReferencia(),Estado.APROBADO.value, pedido.getUsuarioId(),
-                totalPedido(pedido.getReferencia()),pedido.getFechaCreacion(),detallePedidos);
+                totalPedido(pedido.getReferencia()),pedido.getFechaCreacion(),detallePedido);
         this.repositorioPedido.aprobar(pedidoAprobado);
     }
 
