@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
@@ -59,7 +58,7 @@ public class Pedido {
         this.usuarioId = usuarioId;
         this.fechaCreacion = fechaCreacion;
         this.total = total;
-        this.detallePedido = Collections.unmodifiableList(detallePedido);
+        this.detallePedido = detallePedido;
         if(Estado.APROBADO.value.equals(this.estado)){
             validarObligatorio(detallePedido,EL_PEDIDO_DEBE_TENER_UN_DETALLE);
             validarCantidadDisponible();
