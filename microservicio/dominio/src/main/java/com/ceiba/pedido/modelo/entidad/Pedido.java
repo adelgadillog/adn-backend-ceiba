@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
@@ -17,7 +18,6 @@ import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 public class Pedido {
 
     private static final String EL_PEDIDO_DEBE_TENER_UNA_REFERENCIA = "El pedido debe tener una referencia";
-    private static final String EL_PEDIDO_DEBE_TENER_UN_ID_ASOCIADO = "El pedido debe tener un id asociado";
     private static final String EL_PEDIDO_DEBE_TENER_UN_USUARIO_ASOCIADO = "El pedido debe tener un usuario asociado";
     private static final String EL_PEDIDO_DEBE_TENER_UNA_FECHA_CREACION_ASOCIADA = "El pedido debe tener una fecha de creacion asociada";
     private static final String EL_PRODUCTO_NO_CUENTA_CON_UNIDADES_DISPONIBLES = "No existen unidades disponibles para el producto: ";
@@ -59,7 +59,7 @@ public class Pedido {
         this.usuarioId = usuarioId;
         this.fechaCreacion = fechaCreacion;
         this.total = total;
-        this.detallePedido = detallePedido;
+        this.detallePedido = Collections.unmodifiableList(detallePedido);
         if(Estado.APROBADO.value.equals(this.estado)){
             validarObligatorio(detallePedido,EL_PEDIDO_DEBE_TENER_UN_DETALLE);
             validarCantidadDisponible();
