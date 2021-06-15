@@ -21,10 +21,11 @@ dependencies {
 	compile project.ext.springbootjdbc
 	compile project.ext.db
 	testImplementation project.ext.flywaytest
-
+	implementation group: 'javax.xml.rpc', name: 'javax.xml.rpc-api', version: '1.1.2'
 	
 	implementation project(':dominio')
 	implementation project(':aplicacion')
+	implementation project(':trm')
 
 
 	implementation project(':comun:comun-infraestructura')
