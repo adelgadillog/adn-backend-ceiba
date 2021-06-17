@@ -3,7 +3,9 @@ package com.ceiba.pedido.controlador;
 import java.util.List;
 
 import com.ceiba.pedido.consulta.ManejadorListarPedidos;
+import com.ceiba.pedido.detalle.modelo.dto.DtoDetallePedido;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.ceiba.pedido.modelo.dto.DtoPedido;
@@ -25,6 +27,12 @@ public class ConsultaControladorPedido {
     @ApiOperation("Listar Pedidos")
     public List<DtoPedido> listar() {
         return this.manejadorListarPedidos.ejecutar();
+    }
+
+    @GetMapping(value="/detalle/{referencia}")
+    @ApiOperation("consultar detalle Pedido")
+    public List<DtoDetallePedido> consultar(@PathVariable String referencia){
+        return this.manejadorListarPedidos.consultar(referencia);
     }
 
 }

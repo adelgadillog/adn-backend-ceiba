@@ -7,6 +7,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.ceiba.ApplicationMock;
+import com.ceiba.pedido.comando.ComandoPedido;
+import com.ceiba.pedido.servicio.testdatabuilder.ComandoPedidoTestDataBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +38,18 @@ public class ConsultaControladorPedidoTest {
                 .andExpect(jsonPath("$[0].referencia", is("00001")));
     }
 
+    @Test
+    public void consultarDetallePedido() throws Exception{
+        // arrange
+        String referencia= "00001";
+        ComandoPedido pedido = new ComandoPedidoTestDataBuilder().build();
+        // act - assert
+        mocMvc.perform(get("/pedidos/detalle/{referencia}",referencia)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].nombreProducto", is("Audifonos")))
+                .andExpect(jsonPath("$[1].nombreProducto", is("Teclado")));
+    }
 
 }
