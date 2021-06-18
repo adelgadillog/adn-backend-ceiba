@@ -12,7 +12,7 @@ public class ComandoProductoTestDataBuilder {
     private Double precio;
 
     public ComandoProductoTestDataBuilder() {
-        nombre = "Audifonos";
+        nombre = "Mouse";
         cantidadDisponible = 3L;
         precio = 1000000D;
     }
