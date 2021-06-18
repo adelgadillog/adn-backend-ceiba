@@ -1,10 +1,8 @@
 package com.ceiba.pedido.controlador;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import com.ceiba.ApplicationMock;
 import com.ceiba.pedido.comando.ComandoPedido;
 import com.ceiba.pedido.servicio.testdatabuilder.ComandoPedidoTestDataBuilder;
@@ -13,7 +11,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -22,7 +19,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= ApplicationMock.class)
 @WebMvcTest(ComandoControladorPedido.class)
-@DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
 public class ComandoControladorPedidoTest {
 
     @Autowired
