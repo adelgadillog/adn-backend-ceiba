@@ -1,1 +1,1 @@
-select count(1) from producto where id = :id
+select count(1) from producto where nombre = :nombre

@@ -40,7 +40,7 @@ public class ServicioCrearProductoTest {
     @Test
     public void existeProductoRetornaExcepcion(){
         // arrange
-        Mockito.when(repositorioProducto.existe(producto.getId())).thenReturn(true);
+        Mockito.when(repositorioProducto.existe(producto.getNombre())).thenReturn(true);
         this.servicioCrearProducto = new ServicioCrearProducto(repositorioProducto);
         // act - assert
         BasePrueba.assertThrows(() -> servicioCrearProducto.ejecutar(producto), ExcepcionDuplicidad.class,"El producto ya existe en el sistema");

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.xml.rpc.ServiceException;
 import java.rmi.RemoteException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Component
@@ -25,6 +26,7 @@ public class DaoObtenerTrm implements DaoTrm {
         TCRMServicesInterfaceProxy proxy = new TCRMServicesInterfaceProxy(WEB_SERVICE_URL);
         TcrmResponse tcrmResponse = proxy.queryTCRM(null);
 
-        return new DtoTrm(decimalFormat.format(tcrmResponse.getValue()), MENSAJE + new Date());
+        return new DtoTrm(decimalFormat.format(tcrmResponse.getValue()),
+                MENSAJE + new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
     }
 }

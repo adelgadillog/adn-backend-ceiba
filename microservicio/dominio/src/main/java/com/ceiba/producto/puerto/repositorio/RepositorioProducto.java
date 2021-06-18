@@ -17,6 +17,6 @@ public interface RepositorioProducto {
      * @param id
      * @return si existe o no
      */
-    boolean existe(Long id);
+    boolean existe(String id);
 
 }

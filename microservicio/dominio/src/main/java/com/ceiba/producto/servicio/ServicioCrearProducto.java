@@ -20,7 +20,7 @@ public class ServicioCrearProducto {
     }
 
     private void validarExistenciaPrevia(Producto producto) {
-        boolean existe = this.repositorioProducto.existe(producto.getId());
+        boolean existe = this.repositorioProducto.existe(producto.getNombre());
         if(existe) {
             throw new ExcepcionDuplicidad(EL_PRODUCTO_YA_EXISTE_EN_EL_SISTEMA);
         }
