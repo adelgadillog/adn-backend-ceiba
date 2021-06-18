@@ -18,6 +18,9 @@ public class RepositorioPedidoMysql implements RepositorioPedido {
     @SqlStatement(namespace="pedido", value="eliminar")
     private static String sqlEliminar;
 
+    @SqlStatement(namespace="pedido", value="eliminar_detalle")
+    private static String sqlEliminarDetalle;
+
     @SqlStatement(namespace="pedido", value="existe")
     private static String sqlExiste;
 
@@ -34,6 +37,7 @@ public class RepositorioPedidoMysql implements RepositorioPedido {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("referencia", referencia);
         this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminarDetalle, paramSource);
     }
 
     @Override

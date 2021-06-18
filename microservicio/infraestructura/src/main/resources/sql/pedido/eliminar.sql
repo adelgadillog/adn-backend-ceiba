@@ -1,3 +1,3 @@
 delete 
 from pedido
-where referencia = :referencia
+where referencia = :referencia;
