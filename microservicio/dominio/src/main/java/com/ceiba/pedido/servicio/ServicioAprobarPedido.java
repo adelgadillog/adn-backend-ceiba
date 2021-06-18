@@ -1,6 +1,6 @@
 package com.ceiba.pedido.servicio;
 
-import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
+import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
 import com.ceiba.pedido.modelo.entidad.Pedido;
 import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
 import com.ceiba.pedido.detalle.modelo.dto.DtoDetallePedido;
@@ -43,7 +43,7 @@ public class ServicioAprobarPedido {
     private void validarExistencia(Pedido pedido) {
         boolean existe = this.repositorioPedido.existe(pedido.getReferencia());
         if(!existe) {
-            throw new ExcepcionDuplicidad(REFERENCIA_NO_EXISTE_EN_EL_SISTEMA);
+            throw new ExcepcionSinDatos(REFERENCIA_NO_EXISTE_EN_EL_SISTEMA);
         }
     }
 }

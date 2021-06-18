@@ -1,6 +1,6 @@
 package com.ceiba.pedido.modelo.entidad;
 
-import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
+import com.ceiba.dominio.excepcion.ExcepcionCantidadNoDisponible;
 import com.ceiba.pedido.detalle.modelo.dto.DtoDetallePedido;
 import lombok.Getter;
 import java.time.DayOfWeek;
@@ -88,7 +88,7 @@ public class Pedido {
     private void validarCantidadDisponible() {
 
         this.detallePedido.forEach(p-> {
-            if(p.getCantidadPedido() > p.getCantidadDisponible())  throw new ExcepcionDuplicidad(EL_PRODUCTO_NO_CUENTA_CON_UNIDADES_DISPONIBLES + p.getNombreProducto() );
+            if(p.getCantidadPedido() > p.getCantidadDisponible())  throw new ExcepcionCantidadNoDisponible(EL_PRODUCTO_NO_CUENTA_CON_UNIDADES_DISPONIBLES + p.getNombreProducto() );
         });
     }
 

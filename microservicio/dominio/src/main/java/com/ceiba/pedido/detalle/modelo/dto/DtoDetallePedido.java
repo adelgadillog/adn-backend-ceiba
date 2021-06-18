@@ -1,6 +1,5 @@
 package com.ceiba.pedido.detalle.modelo.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter

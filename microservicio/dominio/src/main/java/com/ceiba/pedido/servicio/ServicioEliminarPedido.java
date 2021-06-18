@@ -1,6 +1,6 @@
 package com.ceiba.pedido.servicio;
 
-import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
+import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
 import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
 
 public class ServicioEliminarPedido {
@@ -20,7 +20,7 @@ public class ServicioEliminarPedido {
     private void validarExistenciaPorReferencia(String referencia) {
         boolean existe = this.repositorioPedido.existe(referencia);
         if(!existe) {
-            throw new ExcepcionDuplicidad(REFERENCIA_NO_EXISTE_EN_EL_SISTEMA);
+            throw new ExcepcionSinDatos(REFERENCIA_NO_EXISTE_EN_EL_SISTEMA);
         }
     }
 }

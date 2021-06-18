@@ -1,7 +1,8 @@
 package com.ceiba.pedido.servicio;
 
 import com.ceiba.BasePrueba;
-import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
+import com.ceiba.dominio.excepcion.ExcepcionCantidadNoDisponible;
+import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
 import com.ceiba.pedido.modelo.entidad.Pedido;
 import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
 import com.ceiba.pedido.servicio.testdatabuilder.PedidoTestDataBuilder;
@@ -60,7 +61,7 @@ public class ServicioAprobarPedidoTest {
         this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido, daoDetallePedido);
 
         // act - assert
-        BasePrueba.assertThrows(() -> servicioAprobarPedido.ejecutar(pedido), ExcepcionDuplicidad.class,"Para la referencia no existe pedido registrado en el sistema");
+        BasePrueba.assertThrows(() -> servicioAprobarPedido.ejecutar(pedido), ExcepcionSinDatos.class,"Para la referencia no existe pedido registrado en el sistema");
 
     }
 
@@ -108,7 +109,7 @@ public class ServicioAprobarPedidoTest {
         this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido, daoDetallePedido);
         Mockito.when(daoDetallePedido.listar(Mockito.anyString())).thenReturn(new PedidoTestDataBuilder().listarPedidoProductoNoExisteCantidad());
         // act - assert
-        BasePrueba.assertThrows(() -> servicioAprobarPedido.ejecutar(pedido), ExcepcionDuplicidad.class,"No existen unidades disponibles para el producto: Auriculares");
+        BasePrueba.assertThrows(() -> servicioAprobarPedido.ejecutar(pedido), ExcepcionCantidadNoDisponible.class,"No existen unidades disponibles para el producto: Auriculares");
     }
 
 
