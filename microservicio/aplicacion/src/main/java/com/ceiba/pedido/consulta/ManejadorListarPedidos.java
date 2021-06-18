@@ -1,7 +1,6 @@
 package com.ceiba.pedido.consulta;
 
 import java.util.List;
-
 import com.ceiba.pedido.detalle.modelo.dto.DtoDetallePedido;
 import com.ceiba.pedido.detalle.puerto.dao.DaoDetallePedido;
 import com.ceiba.pedido.puerto.dao.DaoPedido;
