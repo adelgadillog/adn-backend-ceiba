@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.hamcrest.core.Is.is;
@@ -31,7 +32,7 @@ public class ConsultaControladorTrmTest {
         // act - assert
         mocMvc.perform(get("/trm")
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk()).andExpect(jsonPath("$.mensaje",is("Fecha consulta: "+ new Date())));
+                .andExpect(status().isOk()).andExpect(jsonPath("$.mensaje",is("Fecha consulta: "+ new SimpleDateFormat("dd-MM-yyyy").format(new Date()))));
 
     }
 }
