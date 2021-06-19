@@ -51,8 +51,9 @@ public class ServicioCrearProductoTest {
     @Test
     public void validarProductoTest(){
         // arrange
-        Producto producto = Mockito.spy(new Producto("Auriculares",4L,900000D));
+        Producto producto = Mockito.spy(new Producto(1L,"Auriculares",4L,900000D));
         // act - assert
+        BasePrueba.assertEquals(producto.getId(),1L);
         BasePrueba.assertEquals(producto.getNombre(),"Auriculares");
         BasePrueba.assertEquals(producto.getCantidadDisponible(),4L);
         BasePrueba.assertEquals(producto.getPrecio(),900000D);

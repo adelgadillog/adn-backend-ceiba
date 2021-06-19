@@ -7,6 +7,7 @@ import com.ceiba.pedido.modelo.entidad.Pedido;
 import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
 import com.ceiba.pedido.servicio.testdatabuilder.PedidoTestDataBuilder;
 import com.ceiba.pedido.detalle.puerto.dao.DaoDetallePedido;
+import com.ceiba.producto.modelo.entidad.Producto;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +17,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ServicioAprobarPedidoTest {
@@ -112,5 +117,23 @@ public class ServicioAprobarPedidoTest {
         BasePrueba.assertThrows(() -> servicioAprobarPedido.ejecutar(pedido), ExcepcionCantidadNoDisponible.class,"No existen unidades disponibles para el producto: Auriculares");
     }
 
+    @Test
+    public void validarPedidoTest() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        // arrange
+        Pedido pedido = Mockito.spy(new PedidoTestDataBuilder().buildCompleto());
+        // act - assert
+        BasePrueba.assertEquals(pedido.getId(),1L);
+        BasePrueba.assertEquals(pedido.getReferencia(),"00001");
+        BasePrueba.assertEquals(pedido.getEstado(),1L);
+        BasePrueba.assertEquals(sdf.format(Date.from(pedido.getFechaCreacion().atZone(ZoneId.systemDefault()).toInstant())),sdf.format(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())));
+        BasePrueba.assertEquals(sdf.format(Date.from(pedido.getFechaAprobacion().atZone(ZoneId.systemDefault()).toInstant())),sdf.format(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())));
+        BasePrueba.assertEquals(sdf.format(Date.from(pedido.getFechaEntrega().atZone(ZoneId.systemDefault()).toInstant())),sdf.format(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())));
+        BasePrueba.assertEquals(pedido.getUsuarioId(),17L);
+        BasePrueba.assertEquals(pedido.getTotal(),900000D);
+        BasePrueba.assertEquals(pedido.getDetallePedido(),new ArrayList<>());
+
+
+    }
 
 }

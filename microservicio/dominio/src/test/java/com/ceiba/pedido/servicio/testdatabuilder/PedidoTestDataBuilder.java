@@ -20,10 +20,15 @@ public class PedidoTestDataBuilder {
     private List<DtoDetallePedido> detallePedido;
 
     public PedidoTestDataBuilder() {
+        id = 1L;
         referencia = "00001";
         estado = 1L;
         usuarioId = 17L;
         fechaCreacion = LocalDateTime.now();
+        fechaAprobacion = LocalDateTime.now();
+        fechaEntrega = LocalDateTime.now();
+        detallePedido = new ArrayList<>();
+        total = 900000D;
 
     }
 
@@ -36,6 +41,10 @@ public class PedidoTestDataBuilder {
 
     public Pedido build() {
         return new Pedido(referencia,  estado, usuarioId, total, fechaCreacion,detallePedido);
+    }
+
+    public Pedido buildCompleto() {
+        return new Pedido(id,referencia,  estado, usuarioId, total, fechaCreacion,fechaAprobacion,fechaEntrega,detallePedido);
     }
 
     public PedidoTestDataBuilder conFechaCreacion(LocalDateTime fechaCreacion) {

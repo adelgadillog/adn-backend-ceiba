@@ -2,6 +2,7 @@ package com.ceiba.pedido.modelo.entidad;
 
 import com.ceiba.dominio.excepcion.ExcepcionCantidadNoDisponible;
 import com.ceiba.pedido.detalle.modelo.dto.DtoDetallePedido;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ import java.util.List;
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
 @Getter
+@AllArgsConstructor
 public class Pedido {
 
     private static final String EL_PEDIDO_DEBE_TENER_UNA_REFERENCIA = "El pedido debe tener una referencia";
