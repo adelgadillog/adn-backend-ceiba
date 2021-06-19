@@ -80,6 +80,7 @@ dependencies {
 }
 
 bootJar {
-	mainClassName = 'com.ceiba.adn'
-    version =  1
+	mainClassName = 'com.ceiba.Application'
+    version =  version
 }
+

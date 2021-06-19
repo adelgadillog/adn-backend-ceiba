@@ -5,6 +5,7 @@ import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.producto.modelo.entidad.Producto;
 import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
 import com.ceiba.producto.servicio.testdatabuilder.ProductoTestDataBuilder;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,5 +46,15 @@ public class ServicioCrearProductoTest {
         // act - assert
         BasePrueba.assertThrows(() -> servicioCrearProducto.ejecutar(producto), ExcepcionDuplicidad.class,"El producto ya existe en el sistema");
 
+    }
+
+    @Test
+    public void validarProductoTest(){
+        // arrange
+        Producto producto = Mockito.spy(new Producto("Auriculares",4L,900000D));
+        // act - assert
+        BasePrueba.assertEquals(producto.getNombre(),"Auriculares");
+        BasePrueba.assertEquals(producto.getCantidadDisponible(),4L);
+        BasePrueba.assertEquals(producto.getPrecio(),900000D);
     }
 }
