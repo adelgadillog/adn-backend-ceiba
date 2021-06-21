@@ -78,11 +78,11 @@ public class Pedido {
 
     private void calcularFechaEntrega() {
         this.fechaEntrega = this.fechaCreacion;
-        int addedDays = 0;
-        while (addedDays < DIAS_HABILES_ENTREGA) {
+        int agregarDias = 0;
+        while (agregarDias < DIAS_HABILES_ENTREGA) {
             this.fechaEntrega = this.fechaEntrega.plusDays(1);
             if (!(this.fechaEntrega.getDayOfWeek() == DayOfWeek.SATURDAY || this.fechaEntrega.getDayOfWeek() == DayOfWeek.SUNDAY)) {
-                ++addedDays;
+                ++agregarDias;
             }
         }
     }
