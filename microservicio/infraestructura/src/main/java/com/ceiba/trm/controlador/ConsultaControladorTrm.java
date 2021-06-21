@@ -4,6 +4,7 @@ import com.ceiba.trm.consulta.ManejadorObtenerTrm;
 import com.ceiba.trm.modelo.DtoTrm;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import java.rmi.RemoteException;
 @RestController
 @RequestMapping("/trm")
 @Api(tags={"Controlador consulta TRM del dia"})
+@CrossOrigin("*")
 public class ConsultaControladorTrm {
 
     private final ManejadorObtenerTrm manejadorObtenerTrm;
