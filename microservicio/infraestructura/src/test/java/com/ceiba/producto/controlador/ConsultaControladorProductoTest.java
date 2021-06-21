@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= ApplicationMock.class)
 @WebMvcTest(ConsultaControladorProducto.class)
-@DirtiesContext
+@DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
 public class ConsultaControladorProductoTest {
 
     @Autowired
