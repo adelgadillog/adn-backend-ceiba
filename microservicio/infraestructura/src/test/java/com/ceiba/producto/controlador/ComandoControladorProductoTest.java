@@ -42,5 +42,56 @@ public class ComandoControladorProductoTest {
                 .andExpect(content().json("{'id': 3}"));
     }
 
+    @Test
+    public void crearCantidadCeroDebeDevolverError() throws Exception{
+        // arrange
+        ComandoProducto producto = new ComandoProductoTestDataBuilder().conCantidadDisponible(0L).build();
+
+        // act - assert
+        mocMvc.perform(post("/productos")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(producto)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("{'mensaje': 'El producto debe tener cantidad disponible mayor que cero'}"));
+    }
+
+    @Test
+    public void crearCantidadMenorQueCeroDebeDevolverError() throws Exception{
+        // arrange
+        ComandoProducto producto = new ComandoProductoTestDataBuilder().conCantidadDisponible(-1L).build();
+
+        // act - assert
+        mocMvc.perform(post("/productos")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(producto)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("{'mensaje': 'El producto debe tener cantidad disponible mayor que cero'}"));
+    }
+
+    @Test
+    public void crearPrecioCeroDebeDevolverError() throws Exception{
+        // arrange
+        ComandoProducto producto = new ComandoProductoTestDataBuilder().conPrecio(0D).build();
+
+        // act - assert
+        mocMvc.perform(post("/productos")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(producto)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("{'mensaje': 'El producto debe tener un precio mayor que cero'}"));
+    }
+
+    @Test
+    public void crearPrecioMenorQueCeroDebeDevolverError() throws Exception{
+        // arrange
+        ComandoProducto producto = new ComandoProductoTestDataBuilder().conPrecio(-1D).build();
+
+        // act - assert
+        mocMvc.perform(post("/productos")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(producto)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().json("{'mensaje': 'El producto debe tener un precio mayor que cero'}"));
+    }
 
 }

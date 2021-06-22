@@ -20,7 +20,7 @@ public class Pedido {
     private static final int FECHA_CREACION_TRES = 3;
     private static final double DESCUENTO_FECHA_CREACION_TRES = 0.5D;
     private static final int FECHA_CREACION_QUINCE = 15;
-    private static final double DESCUENTO_FECHA_CREACION_QUINCE = 0.7D;
+    private static final double DESCUENTO_FECHA_CREACION_QUINCE = 0.70D;
     private static final int DIAS_HABILES_ENTREGA = 15;
     private static final String EL_PEDIDO_DEBE_TENER_UN_DETALLE = "El pedido debe tener un detalle asociado" ;
 

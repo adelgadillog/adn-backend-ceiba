@@ -1,9 +1,7 @@
 package com.ceiba.producto.servicio.testdatabuilder;
 
-import com.ceiba.pedido.comando.ComandoPedido;
 import com.ceiba.producto.comando.ComandoProducto;
 
-import java.time.LocalDateTime;
 
 public class ComandoProductoTestDataBuilder {
 
@@ -17,7 +15,16 @@ public class ComandoProductoTestDataBuilder {
         precio = 1000000D;
     }
 
-   
+    public ComandoProductoTestDataBuilder conCantidadDisponible(Long cantidadDisponible){
+        this.cantidadDisponible = cantidadDisponible;
+        return this;
+    }
+
+    public ComandoProductoTestDataBuilder conPrecio(Double precio){
+        this.precio = precio;
+        return this;
+    }
+
 
     public ComandoProducto build() {
         return new ComandoProducto(nombre, cantidadDisponible, precio);

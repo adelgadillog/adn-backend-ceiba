@@ -6,6 +6,7 @@ import com.ceiba.pedido.detalle.puerto.dao.DaoDetallePedido;
 import com.ceiba.producto.puerto.repositorio.RepositorioProducto;
 import com.ceiba.producto.servicio.ServicioCrearProducto;
 import com.ceiba.pedido.servicio.ServicioEliminarPedido;
+import com.ceiba.trm.puerto.dao.DaoTrm;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,8 +26,8 @@ public class BeanServicio {
     }
 
     @Bean
-    public ServicioAprobarPedido servicioActualizarPedido(RepositorioPedido repositorioPedido, DaoDetallePedido daoDetallePedido) {
-        return new ServicioAprobarPedido(repositorioPedido, daoDetallePedido);
+    public ServicioAprobarPedido servicioActualizarPedido(RepositorioPedido repositorioPedido, DaoDetallePedido daoDetallePedido, DaoTrm daoTrm) {
+        return new ServicioAprobarPedido(repositorioPedido, daoDetallePedido,daoTrm);
     }
 	
 

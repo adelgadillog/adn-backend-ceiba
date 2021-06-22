@@ -5,9 +5,12 @@ import com.ceiba.dominio.excepcion.ExcepcionCantidadNoDisponible;
 import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
 import com.ceiba.pedido.modelo.entidad.Pedido;
 import com.ceiba.pedido.puerto.repositorio.RepositorioPedido;
+import com.ceiba.pedido.servicio.testdatabuilder.DtoTrmTestDataBuilder;
 import com.ceiba.pedido.servicio.testdatabuilder.PedidoTestDataBuilder;
 import com.ceiba.pedido.detalle.puerto.dao.DaoDetallePedido;
 import com.ceiba.producto.modelo.entidad.Producto;
+import com.ceiba.trm.modelo.DtoTrm;
+import com.ceiba.trm.puerto.dao.DaoTrm;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +20,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import javax.xml.rpc.ServiceException;
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -26,11 +31,13 @@ import java.util.Date;
 @RunWith(MockitoJUnitRunner.class)
 public class ServicioAprobarPedidoTest {
 
-    private static final Double TOTAL_DIA_TRES_ESPERADO = 100000D;
-    private static final Double TOTAL_DIA_QUINCE_ESPERADO = 140000D;
+    private static final Double TOTAL_DIA_TRES_ESPERADO = 200D;
+    private static final Double TOTAL_DIA_QUINCE_ESPERADO = 200D;
+    private static final Double VALOR_TRM = 3500D;
 
     private Pedido pedido;
     private DaoDetallePedido daoDetallePedido;
+    private DaoTrm daoTrm;
     private ServicioAprobarPedido servicioAprobarPedido;
 
     @Captor
@@ -45,15 +52,17 @@ public class ServicioAprobarPedidoTest {
         this.pedido = new PedidoTestDataBuilder().conId(1L).build();
         this.repositorioPedido = Mockito.mock(RepositorioPedido.class);
         this.daoDetallePedido = Mockito.mock(DaoDetallePedido.class);
-        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido, daoDetallePedido);
+        this.daoTrm = Mockito.mock(DaoTrm.class);
+        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido, daoDetallePedido,daoTrm);
 
     }
 
     @Test
-    public void ejecutarAprobar(){
+    public void ejecutarAprobar() throws ServiceException, RemoteException {
         // arrange
         Mockito.when(repositorioPedido.existe(Mockito.anyString())).thenReturn(true);
         Mockito.when(daoDetallePedido.listar(Mockito.anyString())).thenReturn(new PedidoTestDataBuilder().listarDetallePedido());
+        Mockito.when(daoTrm.obtener()).thenReturn(new DtoTrmTestDataBuilder("Fecha: "+ new SimpleDateFormat("dd MM yyyy").format(new Date()),VALOR_TRM.toString()).build());
         // act - assert
         BasePrueba.assertExecute(() -> servicioAprobarPedido.ejecutar(pedido));
 
@@ -63,7 +72,7 @@ public class ServicioAprobarPedidoTest {
     public void ejecutarAprobarNoExistePedidoDebeRetornarExcepcion(){
         // arrange
         Mockito.when(repositorioPedido.existe(Mockito.anyString())).thenReturn(false);
-        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido, daoDetallePedido);
+        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido, daoDetallePedido,daoTrm);
 
         // act - assert
         BasePrueba.assertThrows(() -> servicioAprobarPedido.ejecutar(pedido), ExcepcionSinDatos.class,"Para la referencia no existe pedido registrado en el sistema");
@@ -73,48 +82,53 @@ public class ServicioAprobarPedidoTest {
 
 
     @Test
-    public void calcularTotalElDiaEsTres(){
+    public void calcularTotalElDiaEsTres() throws ServiceException, RemoteException {
         // arrange
         this.pedido = new PedidoTestDataBuilder().conFechaCreacion(LocalDateTime.of(2021,6,2,5,30,12,122)).build();
         Mockito.when(repositorioPedido.existe(Mockito.anyString())).thenReturn(true);
-        Mockito.when(repositorioPedido.total(Mockito.anyString())).thenReturn(200000D);
+        Mockito.when(repositorioPedido.total(Mockito.anyString())).thenReturn(200D);
         Mockito.when(daoDetallePedido.listar(Mockito.anyString())).thenReturn(new PedidoTestDataBuilder().listarDetallePedido());
-        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido, daoDetallePedido);
-
+        Mockito.when(daoTrm.obtener()).thenReturn(new DtoTrmTestDataBuilder("Fecha: "+ new SimpleDateFormat("dd MM yyyy").format(new Date()),VALOR_TRM.toString()).build());
+        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido, daoDetallePedido,daoTrm);
         // act - assert
         BasePrueba.assertExecute(() -> servicioAprobarPedido.ejecutar(pedido));
         Mockito.verify(repositorioPedido).aprobar(pedidoArgumentCaptor.capture());
         Double total = pedidoArgumentCaptor.getValue().getTotal();
-        BasePrueba.assertEquals(TOTAL_DIA_TRES_ESPERADO,total);
+        BasePrueba.assertEquals((TOTAL_DIA_TRES_ESPERADO*VALOR_TRM)*0.50D,total);
 
 
     }
 
     @Test
-    public void calcularTotalElDiaEsQuince(){
+    public void calcularTotalElDiaEsQuince() throws ServiceException, RemoteException {
 
         //arrange
         this.pedido = new PedidoTestDataBuilder().conFechaCreacion(LocalDateTime.of(2021,6,15,5,30,12,122)).build();
         Mockito.when(repositorioPedido.existe(Mockito.anyString())).thenReturn(true);
-        Mockito.when(repositorioPedido.total(Mockito.anyString())).thenReturn(200000D);
+        Mockito.when(repositorioPedido.total(Mockito.anyString())).thenReturn(200D);
         Mockito.when(daoDetallePedido.listar(Mockito.anyString())).thenReturn(new PedidoTestDataBuilder().listarDetallePedido());
-        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido, daoDetallePedido);
+        Mockito.when(daoTrm.obtener()).thenReturn(new DtoTrmTestDataBuilder("Fecha: "+ new SimpleDateFormat("dd MM yyyy").format(new Date()),VALOR_TRM.toString()).build());
+        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido, daoDetallePedido,daoTrm);
 
         // act - assert
         BasePrueba.assertExecute(() -> servicioAprobarPedido.ejecutar(pedido));
         Mockito.verify(repositorioPedido).aprobar(pedidoArgumentCaptor.capture());
         Double total = pedidoArgumentCaptor.getValue().getTotal();
-        BasePrueba.assertEquals(TOTAL_DIA_QUINCE_ESPERADO,total);
+        BasePrueba.assertEquals((TOTAL_DIA_QUINCE_ESPERADO*VALOR_TRM)*0.70D,total);
     }
 
     @Test
-    public void ejecutarAprobarNoExisteCantidadSuficiente(){
+    public void ejecutarAprobarNoExisteCantidadSuficiente() throws ServiceException, RemoteException {
         // arrange
+        Mockito.when(daoTrm.obtener()).thenReturn(new DtoTrmTestDataBuilder("Fecha: "+ new SimpleDateFormat("dd MM yyyy").format(new Date()),VALOR_TRM.toString()).build());
         Mockito.when(repositorioPedido.existe(Mockito.anyString())).thenReturn(true);
-        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido, daoDetallePedido);
+        this.servicioAprobarPedido = new ServicioAprobarPedido(repositorioPedido, daoDetallePedido,daoTrm);
         Mockito.when(daoDetallePedido.listar(Mockito.anyString())).thenReturn(new PedidoTestDataBuilder().listarPedidoProductoNoExisteCantidad());
+
         // act - assert
-        BasePrueba.assertThrows(() -> servicioAprobarPedido.ejecutar(pedido), ExcepcionCantidadNoDisponible.class,"No existen unidades disponibles para el producto: Auriculares");
+        BasePrueba.assertThrows(() -> servicioAprobarPedido.ejecutar(pedido),
+                ExcepcionCantidadNoDisponible.class,
+                "No existen unidades disponibles para el producto: Auriculares");
     }
 
     @Test
@@ -132,8 +146,6 @@ public class ServicioAprobarPedidoTest {
         BasePrueba.assertEquals(pedido.getUsuarioId(),17L);
         BasePrueba.assertEquals(pedido.getTotal(),900000D);
         BasePrueba.assertEquals(pedido.getDetallePedido(),new ArrayList<>());
-
-
     }
 
 }

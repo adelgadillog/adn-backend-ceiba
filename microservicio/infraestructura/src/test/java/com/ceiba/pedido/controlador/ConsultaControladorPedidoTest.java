@@ -22,7 +22,6 @@ import org.springframework.test.web.servlet.MockMvc;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= ApplicationMock.class)
 @WebMvcTest(ConsultaControladorPedido.class)
-@DirtiesContext
 public class ConsultaControladorPedidoTest {
 
     @Autowired
@@ -41,10 +40,10 @@ public class ConsultaControladorPedidoTest {
     }
 
     @Test
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void consultarDetallePedido() throws Exception{
         // arrange
         String referencia= "00001";
-        ComandoPedido pedido = new ComandoPedidoTestDataBuilder().build();
         // act - assert
         mocMvc.perform(get("/pedidos/detalle/{referencia}",referencia)
                 .contentType(MediaType.APPLICATION_JSON))
