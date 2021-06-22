@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
+import static org.springframework.test.annotation.DirtiesContext.MethodMode.BEFORE_METHOD;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -20,13 +21,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= ApplicationMock.class)
 @WebMvcTest(ConsultaControladorProducto.class)
-@DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
+
 public class ConsultaControladorProductoTest {
 
     @Autowired
     private MockMvc mocMvc;
 
     @Test
+    @DirtiesContext(methodMode = BEFORE_METHOD)
     public void listar() throws Exception {
         // arrange
 
