@@ -20,12 +20,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= ApplicationMock.class)
 @WebMvcTest(ConsultaControladorProducto.class)
+@DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
 public class ConsultaControladorProductoTest {
 
     @Autowired
     private MockMvc mocMvc;
 
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     @Test
     public void listar() throws Exception {
         // arrange
