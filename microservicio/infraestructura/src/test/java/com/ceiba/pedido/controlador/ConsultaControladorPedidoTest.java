@@ -40,7 +40,6 @@ public class ConsultaControladorPedidoTest {
     }
 
     @Test
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void consultarDetallePedido() throws Exception{
         // arrange
         String referencia= "00001";
