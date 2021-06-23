@@ -7,8 +7,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.ceiba.ApplicationMock;
-import com.ceiba.pedido.comando.ComandoPedido;
-import com.ceiba.pedido.servicio.testdatabuilder.ComandoPedidoTestDataBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +26,7 @@ public class ConsultaControladorPedidoTest {
     private MockMvc mocMvc;
 
     @Test
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     public void listar() throws Exception {
         // arrange
 

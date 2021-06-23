@@ -46,6 +46,7 @@ public class ComandoControladorPedidoTest {
 
 
     @Test
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     public void eliminar() throws Exception {
         // arrange
         String referencia= "00001";
