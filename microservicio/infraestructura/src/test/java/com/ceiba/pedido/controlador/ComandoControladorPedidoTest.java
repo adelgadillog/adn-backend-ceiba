@@ -1,5 +1,6 @@
 package com.ceiba.pedido.controlador;
 
+import static org.springframework.test.annotation.DirtiesContext.MethodMode.AFTER_METHOD;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -31,7 +32,7 @@ public class ComandoControladorPedidoTest {
 
 
     @Test
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
+    @DirtiesContext(methodMode = AFTER_METHOD)
     public void aprobar() throws Exception{
         // arrange
         String referencia= "00001";
@@ -46,7 +47,7 @@ public class ComandoControladorPedidoTest {
 
 
     @Test
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
+    @DirtiesContext(methodMode = AFTER_METHOD)
     public void eliminar() throws Exception {
         // arrange
         String referencia= "00001";
