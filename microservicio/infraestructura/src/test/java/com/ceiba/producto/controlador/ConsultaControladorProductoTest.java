@@ -29,7 +29,7 @@ public class ConsultaControladorProductoTest {
     private MockMvc mocMvc;
 
     @Test
-    @DirtiesContext(methodMode = AFTER_METHOD)
+    @DirtiesContext(methodMode = BEFORE_METHOD)
     public void listar() throws Exception {
         // arrange
 
@@ -37,7 +37,6 @@ public class ConsultaControladorProductoTest {
         mocMvc.perform(get("/productos")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].nombre", is("Audifonos")));
     }
 
