@@ -13,7 +13,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/productos")
 @Api(tags={"Controlador consulta Productos"})
-@CrossOrigin("*")
 public class ConsultaControladorProducto {
 
     private final ManejadorListarProductos manejadorListarProductos;

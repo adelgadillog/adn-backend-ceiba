@@ -14,7 +14,6 @@ import java.rmi.RemoteException;
 @RestController
 @RequestMapping("/trm")
 @Api(tags={"Controlador consulta TRM del dia"})
-@CrossOrigin("*")
 public class ConsultaControladorTrm {
 
     private final ManejadorObtenerTrm manejadorObtenerTrm;

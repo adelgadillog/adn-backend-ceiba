@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/productos")
 @Api(tags = { "Controlador comando producto"})
-@CrossOrigin("*")
 public class ComandoControladorProducto {
 
     private final ManejadorCrearProducto manejadorCrearProducto;

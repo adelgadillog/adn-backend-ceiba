@@ -12,7 +12,6 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/pedidos")
 @Api(tags={"Controlador consulta pedidos"})
-@CrossOrigin("*")
 public class ConsultaControladorPedido {
 
     private final ManejadorListarPedidos manejadorListarPedidos;
