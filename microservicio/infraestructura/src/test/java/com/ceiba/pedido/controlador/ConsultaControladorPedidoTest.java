@@ -28,7 +28,7 @@ public class ConsultaControladorPedidoTest {
     private MockMvc mocMvc;
 
     @Test
-    @DirtiesContext(methodMode = AFTER_METHOD)
+    @DirtiesContext(methodMode = BEFORE_METHOD)
     public void listar() throws Exception {
         // arrange
 
@@ -41,6 +41,7 @@ public class ConsultaControladorPedidoTest {
     }
 
     @Test
+    @DirtiesContext(methodMode = BEFORE_METHOD)
     public void consultarDetallePedido() throws Exception{
         // arrange
         String referencia= "00001";
