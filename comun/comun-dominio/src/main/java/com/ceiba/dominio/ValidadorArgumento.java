@@ -26,7 +26,13 @@ public class ValidadorArgumento {
             throw new ExcepcionLongitudValor(mensaje);
         }
     }
-    
+
+    public static void validarLongitudMaxima(Object valor,int longitud,String mensaje){
+        if(valor.toString().length() > longitud){
+            throw new ExcepcionLongitudValor(mensaje);
+        }
+    }
+
     public static <T> void validarNoVacio(List<T> lista, String mensaje) {
         if (lista.isEmpty()) {
             throw new ExcepcionValorObligatorio(mensaje);

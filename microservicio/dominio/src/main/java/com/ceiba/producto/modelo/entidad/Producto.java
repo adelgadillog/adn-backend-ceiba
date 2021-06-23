@@ -4,8 +4,7 @@ package com.ceiba.producto.modelo.entidad;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import static com.ceiba.dominio.ValidadorArgumento.validarMenor;
-import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
+import static com.ceiba.dominio.ValidadorArgumento.*;
 
 @Getter
 @AllArgsConstructor
@@ -18,6 +17,7 @@ public class Producto {
     private static final Long CANTIDAD_MINIMA = 1L;
     private static final Long VALOR_MINIMO = 1L;
     private static final Long CERO = 0L;
+    private static final String EL_PRECIO_EXCEDE_EL_MAXIMO_PERMITIDO = "El precio excede el maximo permitido";
 
     private Long id;
     private String nombre;
@@ -36,6 +36,7 @@ public class Producto {
         validarObligatorio(cantidadDisponible,EL_PRODUCTO_DEBE_TENER_UN_CANTIDAD);
         validarMenor(CANTIDAD_MINIMA, cantidadDisponible,EL_PRODUCTO_DEBE_TENER_UN_CANTIDAD_MAYOR_QUE_CERO);
         validarObligatorio(precio,EL_PRODUCTO_DEBE_TENER_UN_PRECIO);
+        validarLongitudMaxima(precio,9,EL_PRECIO_EXCEDE_EL_MAXIMO_PERMITIDO);
         validarMenor(VALOR_MINIMO, precio.longValue(),EL_PRODUCTO_DEBE_TENER_UN_PRECIO_MAYOR_QUE_CERO);
     }
 
